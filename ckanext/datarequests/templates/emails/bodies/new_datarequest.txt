@@ -1,3 +1,33 @@
+Почитуван {{ user.fullname }},
+
+Барање за податоци "{{ datarequest['title'] }}" бреше креирано во организацијата "{{ datarequest['organization']['title'] }}".
+
+Проверете дали можете да одговорите на ова барање со одбирање на табот Барања за податоци на вашата CKAN инсталација.
+
+Ова известување го добивте поради тоа што вие сте член на спомнатата организација.
+
+--
+
+Со почит,
+Тимот на {{ site_title }} -- {{ site_url }}
+
+---
+
+I dashur {{ user.fullname }},
+
+Kërkesa për të dhëna "{{datarequest ['title']}}" është krijuar në organizatën "{{datarequest ['organization'] ['title']}}".
+
+Kontrolloni nëse mund t'i jepni një përgjigje duke hyrë në skedën e kërkesës së të dhënave që do të gjeni në instancën tuaj CKAN.
+
+Ju po merrni këtë njoftim sepse jeni anëtar i organizatës së përmendur.
+
+--
+
+Fatmirësisht,
+{{ site_title }} Ekip -- {{ site_url }}
+
+---
+
 Dear {{ user.fullname }},
 
 The "{{ datarequest['title'] }}" data request has been created in the organization "{{ datarequest['organization']['title'] }}".

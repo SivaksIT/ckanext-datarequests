@@ -1,6 +1,42 @@
+Почитуван {{ user.fullname }},
+
+Некој корисник коментираше на барањето за податоци "{{ datarequest['title'] }}". Проверете го овој нов коментар, во случај да сакате да одговорите.
+
+Оваа порака ја добивте поради тоа што:
+
+* Вие сте сопственик на податочниот сет
+* Вие сте член на организацијата каде што податочниот сет беше креиран
+* Го следите податочниот сет
+* Сте ставиле коментар на барањето за податоци
+
+--
+
+Со почит,
+Тимот на {{ site_title }} -- {{ site_url }}
+
+---
+
+I dashur {{ user.fullname }},
+
+
+
+Ju po merrni këto njoftime sepse:
+
+* Ju jeni pronari i kërkesës së të dhënave
+* Ju jeni një anëtar i organizatës ku është krijuar kërkesa e të dhënave
+* Po ndjek kërkesën e të dhënave
+* Ju keni postuar një koment në kërkesën e të dhënave
+
+--
+
+Fatmirësisht,
+{{ site_title }} Ekip -- {{ site_url }}
+
+---
+
 Dear {{ user.fullname }},
 
-An user has commented in the "{{ datarequest['title'] }}" data request. Check this new comment just in case you want to give it a reply.
+Një përdorues ka komentuar në kërkesën e të dhënave "{{datarequest ['title']}}". Kontrolloni këtë koment të ri vetëm në rast se doni të jepni një përgjigje.
 
 You are receiving this notifications because:
 

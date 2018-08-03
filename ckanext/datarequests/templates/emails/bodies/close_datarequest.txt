@@ -1,3 +1,40 @@
+Почитуван {{ user.fullname }},
+
+Барањето za podatoci "{{ datarequest['title'] }}" беше затворено. Проверете го прифатениот податочен сет во CKAN!
+
+
+Оваа порака ја добивте поради тоа што:
+
+* Вие сте сопственик на податочниот сет
+* Вие сте член на организацијата каде што податочниот сет беше креиран
+* Го следите податочниот сет
+* Сте ставиле коментар на барањето за податоци
+
+--
+
+Со почит,
+Тимот на {{ site_title }} -- {{ site_url }}
+
+---
+
+I dashur {{ user.fullname }},
+
+Kërkesa për të dhëna "{{ datarequest['title'] }}" është mbyllur. Kontrolloni grupin e të dhënave të pranuara në CKAN!
+
+Ju po merrni këto njoftime sepse:
+
+* Ju jeni pronari i kërkesës së të dhënave
+* Ju jeni një anëtar i organizatës ku është krijuar kërkesa e të dhënave
+* Po ndjek kërkesën e të dhënave
+* Ju keni postuar një koment në kërkesën e të dhënave
+
+--
+
+Fatmirësisht,
+{{ site_title }} Ekip -- {{ site_url }}
+
+---
+
 Dear {{ user.fullname }},
 
 "{{ datarequest['title'] }}" data request has been closed. Check the accepted dataset in CKAN!

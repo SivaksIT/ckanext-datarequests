@@ -1,1 +1,1 @@
-[{{ site_title }}] Data Request {{ datarequest['title'] }} has a new comment!
+[{{ site_title }}] Барањето за податоци {{ datarequest['title'] }} има нов коментар! | [{{ site_title }}] Kërkesa për të dhëna {{ datarequest['title'] }} ka një koment të ri! | [{{ site_title }}] Data Request {{ datarequest['title'] }} has a new comment!

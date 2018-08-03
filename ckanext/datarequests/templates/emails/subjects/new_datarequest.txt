@@ -1,1 +1,1 @@
-[{{ site_title }}] Data Request {{ datarequest['title'] }} created in organization {{ datarequest['organization']['title'] }}!
+[{{ site_title }}] Барање за податоци {{ datarequest['title'] }} е креирано во организацијата {{ datarequest['organization']['title'] }}! | [{{ site_title }}] Kërkesa për të dhëna {{ datarequest['title'] }} krijuar në organizatë {{ datarequest['organization']['title'] }}! | [{{ site_title }}] Data Request {{ datarequest['title'] }} created in organization {{ datarequest['organization']['title'] }}!

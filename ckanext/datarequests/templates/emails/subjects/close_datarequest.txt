@@ -1,1 +1,1 @@
-[{{ site_title }}] Data Request {{ datarequest['title'] }} has been closed!
+[{{ site_title }}] Барањето за податоци {{ datarequest['title'] }} беше затворено! | [{{ site_title }}] Kërkesa për të dhëna {{ datarequest['title'] }} është mbyllur! | [{{ site_title }}] Data Request {{ datarequest['title'] }} has been closed!
