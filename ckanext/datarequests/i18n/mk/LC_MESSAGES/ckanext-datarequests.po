@@ -180,7 +180,7 @@ msgstr "Видливост"
 #: ckanext/datarequests/templates/header.html:6
 #: ckanext/datarequests/tests/test_ui_controller.py:630
 msgid "Organizations"
-msgstr "Оганизации"
+msgstr "Организации"
 
 #: ckanext/datarequests/controllers/ui_controller.py:170
 msgid "\"page\" parameter must be an integer"
@@ -360,7 +360,7 @@ msgstr "Управувајте"
 
 #: ckanext/datarequests/templates/datarequests/show.html:19
 msgid "Close"
-msgstr "Затври"
+msgstr "Затвори"
 
 #: ckanext/datarequests/templates/datarequests/show.html:45
 #: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:26
