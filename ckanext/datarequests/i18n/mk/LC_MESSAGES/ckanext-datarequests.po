@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-datarequests 1.0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-03 12:39+0200\n"
+"POT-Creation-Date: 2018-08-06 16:24+0200\n"
 "PO-Revision-Date: 2018-08-03 12:41+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: mk\n"
@@ -20,42 +20,68 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-#: ckanext/datarequests/actions.py:251 ckanext/datarequests/actions.py:304
-#: ckanext/datarequests/actions.py:496 ckanext/datarequests/actions.py:542
-#: ckanext/datarequests/actions.py:604 ckanext/datarequests/actions.py:696
-#: ckanext/datarequests/actions.py:830 ckanext/datarequests/actions.py:881
+#: ckanext/datarequests/actions.py:288 ckanext/datarequests/actions.py:341
+#: ckanext/datarequests/actions.py:558 ckanext/datarequests/actions.py:604
+#: ckanext/datarequests/actions.py:667 ckanext/datarequests/actions.py:759
+#: ckanext/datarequests/actions.py:893 ckanext/datarequests/actions.py:944
 msgid "Data Request ID has not been included"
 msgstr "Идентификаторот на барањето за податоци не е вклучен"
 
-#: ckanext/datarequests/actions.py:262 ckanext/datarequests/actions.py:315
-#: ckanext/datarequests/actions.py:507 ckanext/datarequests/actions.py:553
-#: ckanext/datarequests/actions.py:841
+#: ckanext/datarequests/actions.py:299 ckanext/datarequests/actions.py:358
+#: ckanext/datarequests/actions.py:569 ckanext/datarequests/actions.py:615
+#: ckanext/datarequests/actions.py:904
 #, python-format
 msgid "Data Request %s not found in the data base"
-msgstr Барањето за податоци %s не е најдено во базата со податоци"
+msgstr "арањето за податоци %s не е најдено во базата со податоци"
 
-#: ckanext/datarequests/actions.py:562
+#: ckanext/datarequests/actions.py:624
 msgid "This Data Request is already closed"
 msgstr "Ова барање за податоци е веќе затворено"
 
-#: ckanext/datarequests/actions.py:650 ckanext/datarequests/actions.py:743
-#: ckanext/datarequests/actions.py:789
+#: ckanext/datarequests/actions.py:713 ckanext/datarequests/actions.py:806
+#: ckanext/datarequests/actions.py:852
 msgid "Comment ID has not been included"
 msgstr "Идентификаторот на коментарот не беше вклучен"
 
-#: ckanext/datarequests/actions.py:661 ckanext/datarequests/actions.py:754
-#: ckanext/datarequests/actions.py:800
+#: ckanext/datarequests/actions.py:724 ckanext/datarequests/actions.py:817
+#: ckanext/datarequests/actions.py:863
 #, python-format
 msgid "Comment %s not found in the data base"
 msgstr "Коментарот %s не е најден во базата со податоци"
 
-#: ckanext/datarequests/actions.py:847
+#: ckanext/datarequests/actions.py:910
 msgid "The user is already following the given Data Request"
 msgstr "Корисникот веќе го следи даденото барање за податоци"
 
-#: ckanext/datarequests/actions.py:893
+#: ckanext/datarequests/actions.py:956
 msgid "The user is not following the given Data Request"
 msgstr "Корисникот не го следи даденото барање за податоци"
+
+#: ckanext/datarequests/helpers.py:62
+#: ckanext/datarequests/templates/datarequests/show.html:50
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_item.html:16
+msgid "Open"
+msgstr "Отворено"
+
+#: ckanext/datarequests/helpers.py:63
+msgid "In progress"
+msgstr "Во тек"
+
+#: ckanext/datarequests/helpers.py:64
+msgid "Data holder contacted"
+msgstr "Контактиран е сопственикот на податоците"
+
+#: ckanext/datarequests/helpers.py:65
+msgid "Scheduled for release"
+msgstr "Закажано за издавање"
+
+#: ckanext/datarequests/helpers.py:66
+msgid "Cannot be released"
+msgstr "Не може да биде издадено"
+
+#: ckanext/datarequests/helpers.py:67
+msgid "Not held by public sector"
+msgstr "Не е поседувано од јавен сектор"
 
 #: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:17
 #: ckanext/datarequests/validator.py:31 ckanext/datarequests/validator.py:34
@@ -76,162 +102,171 @@ msgstr "Насловот не смее да биде празен"
 msgid "That title is already in use"
 msgstr "Овој наслов веќе се користи"
 
-#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:21
 #: ckanext/datarequests/validator.py:45
-msgid "Description"
-msgstr Опис"
+msgid "Description cannot be empty"
+msgstr "Описот не смее да биде празен"
 
-#: ckanext/datarequests/validator.py:45
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:21
+#: ckanext/datarequests/validator.py:48
+msgid "Description"
+msgstr "Опис"
+
+#: ckanext/datarequests/validator.py:48
 #, python-format
 msgid "Description must be a maximum of %d characters long"
 msgstr "Описот не смее да е подолг од %d знаци"
 
-#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:11
-#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:25
-#: ckanext/datarequests/validator.py:52
+#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:14
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:29
+#: ckanext/datarequests/validator.py:55
 msgid "Organization"
 msgstr "Организација"
 
-#: ckanext/datarequests/validator.py:52
+#: ckanext/datarequests/validator.py:55
 msgid "Organization is not valid"
 msgstr "Организацијата не е валидна"
 
-#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:24
-#: ckanext/datarequests/validator.py:65
+#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:36
+#: ckanext/datarequests/validator.py:68
 msgid "Accepted Dataset"
 msgstr "Прифатен податочен сет"
 
-#: ckanext/datarequests/validator.py:65
+#: ckanext/datarequests/validator.py:68
 msgid "Dataset not found"
 msgstr "Податочниот се не е најден"
 
 #: ckanext/datarequests/templates/datarequests/base.html:17
 #: ckanext/datarequests/templates/datarequests/show.html:25
-#: ckanext/datarequests/validator.py:75
+#: ckanext/datarequests/validator.py:78
 msgid "Data Request"
 msgstr "Барање за податоци"
 
-#: ckanext/datarequests/validator.py:75
+#: ckanext/datarequests/validator.py:78
 msgid "Data Request not found"
 msgstr "Барањето за податоци не е најдено"
 
-#: ckanext/datarequests/validator.py:78 ckanext/datarequests/validator.py:81
+#: ckanext/datarequests/validator.py:81 ckanext/datarequests/validator.py:84
 msgid "Comment"
 msgstr "Коментар"
 
-#: ckanext/datarequests/validator.py:78
+#: ckanext/datarequests/validator.py:81
 msgid "Comments must be a minimum of 1 character long"
 msgstr "Коментарот мора да има барем 1 знак"
 
-#: ckanext/datarequests/validator.py:81
+#: ckanext/datarequests/validator.py:84
 #, python-format
 msgid "Comments must be a maximum of %d characters long"
 msgstr "Коментарот не смее да е подолг од %d знаци"
 
-#: ckanext/datarequests/controllers/ui_controller.py:129
+#: ckanext/datarequests/controllers/ui_controller.py:138
 msgid "Newest"
 msgstr "Најнови"
 
-#: ckanext/datarequests/controllers/ui_controller.py:129
+#: ckanext/datarequests/controllers/ui_controller.py:138
 msgid "Oldest"
 msgstr "Најстари"
 
-#: ckanext/datarequests/controllers/ui_controller.py:145
+#: ckanext/datarequests/controllers/ui_controller.py:154
 #: ckanext/datarequests/tests/test_ui_controller.py:628
 msgid "State"
 msgstr "Состојба"
 
-#: ckanext/datarequests/controllers/ui_controller.py:150
+#: ckanext/datarequests/controllers/ui_controller.py:157
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:45
+msgid "Visibility"
+msgstr "Видливост"
+
+#: ckanext/datarequests/controllers/ui_controller.py:164
 #: ckanext/datarequests/templates/header.html:6
 #: ckanext/datarequests/tests/test_ui_controller.py:630
 msgid "Organizations"
 msgstr "Оганизации"
 
-#: ckanext/datarequests/controllers/ui_controller.py:156
+#: ckanext/datarequests/controllers/ui_controller.py:170
 msgid "\"page\" parameter must be an integer"
 msgstr "параметарот \"page\" мора да е цел број"
 
-#: ckanext/datarequests/controllers/ui_controller.py:159
+#: ckanext/datarequests/controllers/ui_controller.py:173
 msgid "Unauthorized to list Data Requests"
 msgstr "Неавторизиран за листање на барања за податоци"
 
-#: ckanext/datarequests/controllers/ui_controller.py:209
-msgid "Unauthorized to create a Data Request"
-msgstr "Неавторизиран за креирање на барање за податоци"
+#: ckanext/datarequests/controllers/ui_controller.py:222
+msgid "You need to be logged in to create a Data Request"
+msgstr "Морате да бидете логирани за креирате барање за податоци"
 
-#: ckanext/datarequests/controllers/ui_controller.py:224
-#: ckanext/datarequests/controllers/ui_controller.py:247
-#: ckanext/datarequests/controllers/ui_controller.py:264
-#: ckanext/datarequests/controllers/ui_controller.py:332
-#: ckanext/datarequests/controllers/ui_controller.py:399
+#: ckanext/datarequests/controllers/ui_controller.py:237
+#: ckanext/datarequests/controllers/ui_controller.py:260
+#: ckanext/datarequests/controllers/ui_controller.py:277
+#: ckanext/datarequests/controllers/ui_controller.py:345
+#: ckanext/datarequests/controllers/ui_controller.py:412
 #, python-format
 msgid "Data Request %s not found"
 msgstr "Барањето за податоци %s не е најдено"
 
-#: ckanext/datarequests/controllers/ui_controller.py:227
+#: ckanext/datarequests/controllers/ui_controller.py:240
 #, python-format
 msgid "You are not authorized to view the Data Request %s"
 msgstr "Вие не сте авторизирани за да го гледате барањто за податоци %s"
 
-#: ckanext/datarequests/controllers/ui_controller.py:250
+#: ckanext/datarequests/controllers/ui_controller.py:263
 #, python-format
 msgid "You are not authorized to update the Data Request %s"
 msgstr "Вие не сте авторизирани за да го гледате барањето за податоци %s"
 
-#: ckanext/datarequests/controllers/ui_controller.py:260
+#: ckanext/datarequests/controllers/ui_controller.py:273
 #: ckanext/datarequests/tests/test_ui_controller.py:672
 #, python-format
 msgid "Data Request %s has been deleted"
 msgstr "Барањето за податоци %s е избришано"
 
-#: ckanext/datarequests/controllers/ui_controller.py:267
+#: ckanext/datarequests/controllers/ui_controller.py:280
 #, python-format
 msgid "You are not authorized to delete the Data Request %s"
 msgstr "Вие не се авторизирани за да го избришете барањето за податоци %s"
 
-#: ckanext/datarequests/controllers/ui_controller.py:315
+#: ckanext/datarequests/controllers/ui_controller.py:328
 msgid "This data request is already closed"
 msgstr "Ова барање за податоци е веќе затворено"
 
-#: ckanext/datarequests/controllers/ui_controller.py:335
+#: ckanext/datarequests/controllers/ui_controller.py:348
 #, python-format
 msgid "You are not authorized to close the Data Request %s"
 msgstr "Вие не сте авторизирани за да го затворите барањето за податоци %s"
 
-#: ckanext/datarequests/controllers/ui_controller.py:364
+#: ckanext/datarequests/controllers/ui_controller.py:377
 msgid "Comment has been published"
 msgstr "Коментарот беше објавен"
 
-#: ckanext/datarequests/controllers/ui_controller.py:366
+#: ckanext/datarequests/controllers/ui_controller.py:379
 msgid "Comment has been updated"
 msgstr "Коментарот беше ажуриран"
 
-#: ckanext/datarequests/controllers/ui_controller.py:372
+#: ckanext/datarequests/controllers/ui_controller.py:385
 #, python-format
 msgid "You are not authorized to %s"
 msgstr "Вие не сте авторизирани за %s"
 
-#: ckanext/datarequests/controllers/ui_controller.py:403
+#: ckanext/datarequests/controllers/ui_controller.py:416
 #, python-format
 msgid "You are not authorized to list the comments of the Data Request %s"
 msgstr "Вие не сте авторизирани за да ги излистате коментарите на барањето %s"
 
-#: ckanext/datarequests/controllers/ui_controller.py:412
+#: ckanext/datarequests/controllers/ui_controller.py:425
 msgid "Comment has been deleted"
 msgstr "Коментарот беше избришан"
 
-#: ckanext/datarequests/controllers/ui_controller.py:416
+#: ckanext/datarequests/controllers/ui_controller.py:429
 #, python-format
 msgid "Comment %s not found"
 msgstr "Коментарот %s не е најден"
 
-#: ckanext/datarequests/controllers/ui_controller.py:419
+#: ckanext/datarequests/controllers/ui_controller.py:432
 msgid "You are not authorized to delete this comment"
 msgstr "Вие не сте авторизирани за да го избришете овој коментар"
 
 #: ckanext/datarequests/templates/header.html:5
 #: ckanext/datarequests/templates/organization/read_base.html:4
-#: ckanext/datarequests/templates/user/read_base.html:4
+#: ckanext/datarequests/templates/user/read_base.html:7
 msgid "Datasets"
 msgstr "Податочни сетови"
 
@@ -247,7 +282,7 @@ msgstr "Групи"
 #: ckanext/datarequests/templates/datarequests/show.html:8
 #: ckanext/datarequests/templates/header.html:8
 #: ckanext/datarequests/templates/organization/read_base.html:6
-#: ckanext/datarequests/templates/user/read_base.html:6
+#: ckanext/datarequests/templates/user/read_base.html:10
 msgid "Data Requests"
 msgstr "Барања за податоци"
 
@@ -263,10 +298,11 @@ msgid ""
 " it among all the published datasets, you can create a new data request "
 "specifying the data than you want to get."
 msgstr ""
-"Барањата за податоци им овозможуваат на корисниците да побараат податоци кои "
-"што сеуште не се објавени на платформата. Ако барате специфични податоци и не "
-"можете да ги најдете во ниеден од податочни сетови, тогаш можете да креирате "
-"ново барање за податоци специфицирајќи кои податоци сакате да ги добиете."
+"Барањата за податоци им овозможуваат на корисниците да побараат податоци "
+"кои што сеуште не се објавени на платформата. Ако барате специфични "
+"податоци и не можете да ги најдете во ниеден од податочни сетови, тогаш "
+"можете да креирате ново барање за податоци специфицирајќи кои податоци "
+"сакате да ги добиете."
 
 #: ckanext/datarequests/templates/datarequests/close.html:3
 #: ckanext/datarequests/templates/datarequests/close.html:8
@@ -300,7 +336,7 @@ msgstr "Пребарај ги барањата за податоци..."
 #: ckanext/datarequests/templates/datarequests/new.html:3
 #: ckanext/datarequests/templates/datarequests/new.html:7
 #: ckanext/datarequests/templates/datarequests/new.html:11
-#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:47
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:64
 #: ckanext/datarequests/templates/datarequests/snippets/new_datarequest_form.html:7
 msgid "Create Data Request"
 msgstr "Креирај барање за податоци"
@@ -314,8 +350,9 @@ msgid ""
 msgstr ""
 "За да креирате барање за податоци, пополнете ја формата и впишете наслов "
 "и опис за Вашето барање. Ве молиме, бидете колку што можете појасни во "
-"барањето за да го олесните исполнувањето на Вашето барање. Исто така можете "
-"да назначите организација доколку Вашето барање е поврзано со некоја организација."
+"барањето за да го олесните исполнувањето на Вашето барање. Исто така "
+"можете да назначите организација доколку Вашето барање е поврзано со "
+"некоја организација."
 
 #: ckanext/datarequests/templates/datarequests/show.html:15
 msgid "Manage"
@@ -326,37 +363,37 @@ msgid "Close"
 msgstr "Затври"
 
 #: ckanext/datarequests/templates/datarequests/show.html:45
-#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:19
+#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:26
 #: ckanext/datarequests/templates/datarequests/snippets/datarequest_item.html:12
 msgid "Closed"
 msgstr "Затворено"
-
-#: ckanext/datarequests/templates/datarequests/show.html:50
-#: ckanext/datarequests/templates/datarequests/snippets/datarequest_item.html:16
-msgid "Open"
-msgstr "Отворено"
 
 #: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:2
 msgid "Additional Info"
 msgstr "Додатни информации"
 
-#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:7
+#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:8
 msgid "Creator"
 msgstr "Креатор"
 
-#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:8
-#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:12
-#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:29
+#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:9
+#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:15
+#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:41
 msgid "None"
 msgstr "Ништо"
 
-#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:15
+#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:20
 msgid "Created"
 msgstr "Креирано на"
 
-#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:20
+#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:27
 msgid "Not closed yet"
 msgstr "Не е затворено сеуште"
+
+#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:49
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:47
+msgid "Status"
+msgstr "Статус"
 
 #: ckanext/datarequests/templates/datarequests/snippets/close_datarequest_form.html:11
 msgid "Accept Dataset"
@@ -374,10 +411,10 @@ msgid ""
 "html=\"true\">Markdown formatting</a> here. You can refer datasets by "
 "adding their URL."
 msgstr ""
-"Можете да користите <a href=\"#markdown\" title=\"Markdown quick reference\" "
-"data-target=\"popover\" data-content=\"%(markdown_tooltip)s\" data-"
-"html=\"true\">Markdown форматирање</a> овде. Може да референцирате податочни "
-"сетови со додавање на нивното URL."
+"Можете да користите <a href=\"#markdown\" title=\"Markdown quick "
+"reference\" data-target=\"popover\" data-content=\"%(markdown_tooltip)s\""
+" data-html=\"true\">Markdown форматирање</a> овде. Може да референцирате "
+"податочни сетови со додавање на нивното URL."
 
 #: ckanext/datarequests/templates/datarequests/snippets/comment_form.html:28
 msgid "Cancel"
@@ -415,15 +452,29 @@ msgstr "пр. Името на барањето за податоци"
 msgid "eg. Data Request description"
 msgstr "пр. Описот на барањето за податоци"
 
-#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:29
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:33
 msgid "No organization"
 msgstr "Нема организација"
 
-#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:43
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:45
+msgid "hidden"
+msgstr "скриено"
+
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:45
+msgid "visible"
+msgstr "видливо"
+
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:51
+msgid ""
+"Your data request will not be visible until a site administrator reviews "
+"it."
+msgstr "Вашето барање нема да е видливо се додека администраторт не го прегледа."
+
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:60
 msgid "Are you sure you want to delete this data request?"
 msgstr "Дали сте сигурни дека сакате да го избришете ова барање за податоци?"
 
-#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:44
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:61
 msgid "Delete"
 msgstr "Избриши"
 
@@ -456,7 +507,7 @@ msgid "Follow"
 msgstr "Следи"
 
 #: ckanext/datarequests/templates/organization/read_base.html:5
-#: ckanext/datarequests/templates/user/read_base.html:5
+#: ckanext/datarequests/templates/user/read_base.html:8
 msgid "Activity Stream"
 msgstr "Активности"
 
