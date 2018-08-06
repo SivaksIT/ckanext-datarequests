@@ -18,17 +18,18 @@
 # along with CKAN Data Requests Extension. If not, see <http://www.gnu.org/licenses/>.
 
 import ckan.lib.helpers as h
+from functools import partial
+
 import ckan.plugins as p
 import ckan.plugins.toolkit as tk
-import auth
+from pylons import config
+
 import actions
+import auth
 import constants
 import helpers
 import os
 import sys
-
-from functools import partial
-from pylons import config
 
 
 def get_config_bool_value(config_name, default_value=False):
@@ -215,7 +216,8 @@ class DataRequestsPlugin(p.SingletonPlugin):
             'get_open_datarequests_number': helpers.get_open_datarequests_number,
             'get_open_datarequests_badge': partial(helpers.get_open_datarequests_badge, self._show_datarequests_badge),
             'get_plus_icon': get_plus_icon,
-            'is_following_datarequest': helpers.is_following_datarequest
+            'is_following_datarequest': helpers.is_following_datarequest,
+            'get_datarequest_statuses': helpers.get_datarequest_statuses
         }
 
     ######################################################################
