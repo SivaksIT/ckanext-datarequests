@@ -182,7 +182,7 @@ class DataRequestsUI(base.BaseController):
 
             if action == constants.UPDATE_DATAREQUEST:
                 data_dict['id'] = request.POST.get('id', '')
-            if action == constants.DATAREQUEST_CREATE:
+            if action == constants.CREATE_DATAREQUEST:
                 data_dict.pop('id', None)
 
             try:
