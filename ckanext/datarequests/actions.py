@@ -450,10 +450,6 @@ def list_datarequests(context, data_dict):
     if data_dict.get('sort', None) == 'desc':
         desc = True
 
-    visibility_text = data_dict.get('visibility', None)
-    if visibility_text:
-        params['visibility'] = _get_visibility_from_name(visibility_text).value
-
     # Call the function
     db_datarequests = db.DataRequest.get_ordered_by_date(organization_id=organization_id,
                                                          user_id=user_id, closed=closed,
