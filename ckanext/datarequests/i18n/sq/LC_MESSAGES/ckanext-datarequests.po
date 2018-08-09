@@ -268,7 +268,7 @@ msgstr "Ju nuk jeni i autorizuar të fshini këtë koment"
 #: ckanext/datarequests/templates/organization/read_base.html:4
 #: ckanext/datarequests/templates/user/read_base.html:7
 msgid "Datasets"
-msgstr "Datasets"
+msgstr "Seti i të dhënave"
 
 #: ckanext/datarequests/templates/header.html:7
 msgid "Groups"
