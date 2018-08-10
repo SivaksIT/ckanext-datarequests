@@ -9,23 +9,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-datarequests 1.0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-06 16:24+0200\n"
-"PO-Revision-Date: 2018-08-03 15:43+0200\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2018-08-08 00:05+0200\n"
+"PO-Revision-Date: 2018-08-10 12:17+0200\n"
 "Language: sq\n"
 "Language-Team: sq <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
+"Last-Translator: \n"
+"X-Generator: Poedit 2.0.4\n"
 
 #: ckanext/datarequests/actions.py:288 ckanext/datarequests/actions.py:341
 #: ckanext/datarequests/actions.py:558 ckanext/datarequests/actions.py:604
 #: ckanext/datarequests/actions.py:667 ckanext/datarequests/actions.py:759
 #: ckanext/datarequests/actions.py:893 ckanext/datarequests/actions.py:944
 msgid "Data Request ID has not been included"
-msgstr "ID e kërkesës së të dhënave nuk është përfshirë"
+msgstr "ID-ja e kërkesës së të dhënave nuk është përfshirë"
 
 #: ckanext/datarequests/actions.py:299 ckanext/datarequests/actions.py:358
 #: ckanext/datarequests/actions.py:569 ckanext/datarequests/actions.py:615
@@ -36,7 +37,7 @@ msgstr "Kërkesa e të dhënave %s nuk gjendet në bazën e të dhënave"
 
 #: ckanext/datarequests/actions.py:624
 msgid "This Data Request is already closed"
-msgstr "Kjo kërkesë e të dhënave tashmë është e mbyllur"
+msgstr "Kjo kërkesë e të dhënave tanimë është e mbyllur"
 
 #: ckanext/datarequests/actions.py:713 ckanext/datarequests/actions.py:806
 #: ckanext/datarequests/actions.py:852
@@ -47,11 +48,11 @@ msgstr "ID-ja e komentit nuk është përfshirë"
 #: ckanext/datarequests/actions.py:863
 #, python-format
 msgid "Comment %s not found in the data base"
-msgstr "Koment %s nuk u gjet në bazën e të dhënave"
+msgstr "Komenti %s nuk u gjet në bazën e të dhënave"
 
 #: ckanext/datarequests/actions.py:910
 msgid "The user is already following the given Data Request"
-msgstr "Përdoruesi tashmë po ndjek kërkesën e dhënë për të dhënat"
+msgstr "Përdoruesi tanimë po ndjek kërkesën e dhënë për të dhënat"
 
 #: ckanext/datarequests/actions.py:956
 msgid "The user is not following the given Data Request"
@@ -61,7 +62,7 @@ msgstr "Përdoruesi nuk po ndjek kërkesën e dhënë të të dhënave"
 #: ckanext/datarequests/templates/datarequests/show.html:50
 #: ckanext/datarequests/templates/datarequests/snippets/datarequest_item.html:16
 msgid "Open"
-msgstr "Aapur"
+msgstr "Hapur"
 
 #: ckanext/datarequests/helpers.py:63
 msgid "In progress"
@@ -73,11 +74,11 @@ msgstr "Mbajtësi i të dhënave është kontaktuar"
 
 #: ckanext/datarequests/helpers.py:65
 msgid "Scheduled for release"
-msgstr "Planifikuar për lirim"
+msgstr "Planifikuar për ta lëshuar"
 
 #: ckanext/datarequests/helpers.py:66
 msgid "Cannot be released"
-msgstr "Nuk mund të lirohet"
+msgstr "Nuk mund të lëshohet"
 
 #: ckanext/datarequests/helpers.py:67
 msgid "Not held by public sector"
@@ -87,12 +88,12 @@ msgstr "Nuk mbahen nga sektori publik"
 #: ckanext/datarequests/validator.py:31 ckanext/datarequests/validator.py:34
 #: ckanext/datarequests/validator.py:41
 msgid "Title"
-msgstr "Titull"
+msgstr "Titulli"
 
 #: ckanext/datarequests/validator.py:31
 #, python-format
 msgid "Title must be a maximum of %d characters long"
-msgstr "Titulli duhet të jetë maksimumi %d karaktere"
+msgstr "Emri duhet të jetë një maksimum prej % i gjatë me karaktere"
 
 #: ckanext/datarequests/validator.py:34
 msgid "Title cannot be empty"
@@ -100,7 +101,7 @@ msgstr "Titulli nuk mund të jetë i zbrazët"
 
 #: ckanext/datarequests/validator.py:41
 msgid "That title is already in use"
-msgstr "That title is already in use"
+msgstr "Ky titull është tanimë në përdorim"
 
 #: ckanext/datarequests/validator.py:45
 msgid "Description cannot be empty"
@@ -114,7 +115,7 @@ msgstr "Përshkrim"
 #: ckanext/datarequests/validator.py:48
 #, python-format
 msgid "Description must be a maximum of %d characters long"
-msgstr "Përshkrimi duhet të jetë maksimumi %d karaktere"
+msgstr "Përshkrimi duhet të jetë një maksimum prej % i gjatë me karaktere"
 
 #: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:14
 #: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:29
@@ -129,11 +130,11 @@ msgstr "Organizata nuk është e vlefshme"
 #: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:36
 #: ckanext/datarequests/validator.py:68
 msgid "Accepted Dataset"
-msgstr "Dataset e pranuar"
+msgstr "Seti i të dhënave është pranuar"
 
 #: ckanext/datarequests/validator.py:68
 msgid "Dataset not found"
-msgstr "Dataset nuk u gjet"
+msgstr "Seti i të dhënave nuk u gjet"
 
 #: ckanext/datarequests/templates/datarequests/base.html:17
 #: ckanext/datarequests/templates/datarequests/show.html:25
@@ -151,12 +152,12 @@ msgstr "Koment"
 
 #: ckanext/datarequests/validator.py:81
 msgid "Comments must be a minimum of 1 character long"
-msgstr "Komentet duhet të jenë të paktën 1 karakter"
+msgstr "Komentet duhet të jetë minimum 1 karakter i gjatë"
 
 #: ckanext/datarequests/validator.py:84
 #, python-format
 msgid "Comments must be a maximum of %d characters long"
-msgstr "Komentet duhet të jenë maksimumi %d karaktere"
+msgstr "Komentet duhet të jenë një maksimum % i gjatë me karaktere"
 
 #: ckanext/datarequests/controllers/ui_controller.py:138
 msgid "Newest"
@@ -164,7 +165,7 @@ msgstr "Më të Rejat"
 
 #: ckanext/datarequests/controllers/ui_controller.py:138
 msgid "Oldest"
-msgstr "Oldest"
+msgstr "Më i vjetër"
 
 #: ckanext/datarequests/controllers/ui_controller.py:154
 #: ckanext/datarequests/tests/test_ui_controller.py:628
@@ -174,7 +175,7 @@ msgstr "Gjendje"
 #: ckanext/datarequests/controllers/ui_controller.py:157
 #: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:45
 msgid "Visibility"
-msgstr ""
+msgstr "Dukshmëria"
 
 #: ckanext/datarequests/controllers/ui_controller.py:164
 #: ckanext/datarequests/templates/header.html:6
@@ -184,15 +185,15 @@ msgstr "Organizatat"
 
 #: ckanext/datarequests/controllers/ui_controller.py:170
 msgid "\"page\" parameter must be an integer"
-msgstr "Parametri \"page\" duhet të jetë një numër i plotë"
+msgstr "Parametri \"faqe\" duhet të jetë një numër i plotë"
 
 #: ckanext/datarequests/controllers/ui_controller.py:173
 msgid "Unauthorized to list Data Requests"
-msgstr "I paautorizuar për të listuar kërkesat e të dhënave"
+msgstr "I paautorizuar për t'i rradhitur kërkesat e të dhënave"
 
 #: ckanext/datarequests/controllers/ui_controller.py:222
 msgid "You need to be logged in to create a Data Request"
-msgstr "Duhet të keni hyrë brenda për të krijuar një Kërkesë të të Dhënave"
+msgstr "Duhet të identifikoheni për të krijuar një Kërkesë të të Dhënave"
 
 #: ckanext/datarequests/controllers/ui_controller.py:237
 #: ckanext/datarequests/controllers/ui_controller.py:260
@@ -206,12 +207,12 @@ msgstr "Kërkesa e të dhënave %s nuk u gjet"
 #: ckanext/datarequests/controllers/ui_controller.py:240
 #, python-format
 msgid "You are not authorized to view the Data Request %s"
-msgstr "Ju nuk jeni i autorizuar për të parë kërkesën e të dhënave %s"
+msgstr "Ju nuk jeni i autorizuar për ta shikuar kërkesën e të dhënave %s"
 
 #: ckanext/datarequests/controllers/ui_controller.py:263
 #, python-format
 msgid "You are not authorized to update the Data Request %s"
-msgstr "Ju nuk jeni i autorizuar të përditësoni kërkesën e të dhënave %s"
+msgstr "Ju nuk jeni i autorizuar për ta përditësuar kërkesën e të dhënave %s"
 
 #: ckanext/datarequests/controllers/ui_controller.py:273
 #: ckanext/datarequests/tests/test_ui_controller.py:672
@@ -222,16 +223,16 @@ msgstr "Kërkesa e të dhënave %s është fshirë"
 #: ckanext/datarequests/controllers/ui_controller.py:280
 #, python-format
 msgid "You are not authorized to delete the Data Request %s"
-msgstr "Ju nuk jeni i autorizuar të fshini kërkesën e të dhënave %s"
+msgstr "Ju nuk jeni i autorizuar për ta fshirë kërkesën e të dhënave %s"
 
 #: ckanext/datarequests/controllers/ui_controller.py:328
 msgid "This data request is already closed"
-msgstr "Kjo kërkesë e të dhënave tashmë është e mbyllur"
+msgstr "Kjo kërkesë e të dhënave tanimë është e mbyllur"
 
 #: ckanext/datarequests/controllers/ui_controller.py:348
 #, python-format
 msgid "You are not authorized to close the Data Request %s"
-msgstr "Ju nuk jeni i autorizuar të mbyllni kërkesën e të dhënave %s"
+msgstr "Ju nuk jeni i autorizuar për ta mbyllur kërkesën e të dhënave %s"
 
 #: ckanext/datarequests/controllers/ui_controller.py:377
 msgid "Comment has been published"
@@ -249,7 +250,8 @@ msgstr "Ju nuk jeni i autorizuar të %s"
 #: ckanext/datarequests/controllers/ui_controller.py:416
 #, python-format
 msgid "You are not authorized to list the comments of the Data Request %s"
-msgstr "Ju nuk jeni i autorizuar të renditni komentet e kërkesës së të dhënave %s"
+msgstr ""
+"Ju nuk jeni i autorizuar t'i rradhisni komentet e kërkesës së të dhënave %s"
 
 #: ckanext/datarequests/controllers/ui_controller.py:425
 msgid "Comment has been deleted"
@@ -258,17 +260,17 @@ msgstr "Komenti është fshirë"
 #: ckanext/datarequests/controllers/ui_controller.py:429
 #, python-format
 msgid "Comment %s not found"
-msgstr "Koment %s nuk u gjet"
+msgstr "Komenti %s nuk u gjet"
 
 #: ckanext/datarequests/controllers/ui_controller.py:432
 msgid "You are not authorized to delete this comment"
-msgstr "Ju nuk jeni i autorizuar të fshini këtë koment"
+msgstr "Ju nuk jeni i autorizuar ta fshini këtë koment"
 
 #: ckanext/datarequests/templates/header.html:5
 #: ckanext/datarequests/templates/organization/read_base.html:4
 #: ckanext/datarequests/templates/user/read_base.html:7
 msgid "Datasets"
-msgstr "Datasets"
+msgstr "Seti i të dhënave"
 
 #: ckanext/datarequests/templates/header.html:7
 msgid "Groups"
@@ -289,49 +291,51 @@ msgstr "Kërkesat e të dhënave"
 #: ckanext/datarequests/templates/header.html:9
 #: ckanext/datarequests/templates/organization/read_base.html:7
 msgid "About"
-msgstr "Për"
+msgstr ""
+"Për\n"
+"About us (Rreth nesh)"
 
 #: ckanext/datarequests/templates/datarequests/base.html:20
 msgid ""
-"Data Requests allow users to ask for data that is not published in the "
-"platform yet. If you want some specific data and you are not able to find"
-" it among all the published datasets, you can create a new data request "
-"specifying the data than you want to get."
+"Data Requests allow users to ask for data that is not published in the platform "
+"yet. If you want some specific data and you are not able to find it among all "
+"the published datasets, you can create a new data request specifying the data "
+"than you want to get."
 msgstr ""
-"Kërkesat e të dhënave u lejojnë përdoruesve të kërkojnë të dhëna që ende "
-"nuk janë të publikuara në platformë. Nëse doni disa të dhëna specifike "
-"dhe nuk jeni në gjendje ta gjeni në mesin e të gjitha grupeve të të "
-"dhënave të publikuara, mund të krijoni një kërkesë të re të të dhënave që"
-" specifikon të dhënat se sa doni të merrni."
+"Kërkesat e të dhënave u lejojnë përdoruesve të kërkojnë të dhëna që akoma nuk "
+"janë të publikuara në platformë. Nëse ju dëshironi disa të dhëna specifike dhe "
+"ju nuk jeni në gjendje t'i gjeni në mesin e të gjitha grupeve të të dhënave të "
+"publikuara, mund të krijoni një kërkesë të re të të dhënave duke i specifikuar "
+"të dhënat të cilat dëshironi t'i merrni."
 
 #: ckanext/datarequests/templates/datarequests/close.html:3
 #: ckanext/datarequests/templates/datarequests/close.html:8
 #: ckanext/datarequests/templates/datarequests/close.html:12
 #: ckanext/datarequests/templates/datarequests/snippets/close_datarequest_form.html:25
 msgid "Close Data Request"
-msgstr "Kërkesa për të dhëna të ngushta"
+msgstr "Mbyllni të Dhënat e Kërkesës"
 
 #: ckanext/datarequests/templates/datarequests/comment.html:5
 #: ckanext/datarequests/templates/datarequests/show.html:28
 msgid "Comments"
-msgstr "Koment"
+msgstr "Komentet"
 
 #: ckanext/datarequests/templates/datarequests/edit.html:3
 #: ckanext/datarequests/templates/datarequests/edit.html:8
 #: ckanext/datarequests/templates/datarequests/edit.html:12
 msgid "Edit Data Request"
-msgstr "Ndrysho kërkimin e të dhënave"
+msgstr "Redakto Kërkesën e të Dhënave"
 
 #: ckanext/datarequests/templates/datarequests/index.html:9
 #: ckanext/datarequests/templates/organization/datarequests.html:10
 msgid "Add Data Request"
-msgstr "Shto kërkesë të dhënash"
+msgstr "Shtoni Kërkesë për të dhënat"
 
 #: ckanext/datarequests/templates/datarequests/index.html:12
 #: ckanext/datarequests/templates/organization/datarequests.html:13
 #: ckanext/datarequests/templates/user/datarequests.html:9
 msgid "Search Data Requests..."
-msgstr "Kërko të dhëna për të dhëna..."
+msgstr "Kërkoni Kërkesë për të Dhënat..."
 
 #: ckanext/datarequests/templates/datarequests/new.html:3
 #: ckanext/datarequests/templates/datarequests/new.html:7
@@ -339,20 +343,20 @@ msgstr "Kërko të dhëna për të dhëna..."
 #: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:64
 #: ckanext/datarequests/templates/datarequests/snippets/new_datarequest_form.html:7
 msgid "Create Data Request"
-msgstr "Krijo kërkesë për të dhëna"
+msgstr "Krijoni Kërkesë për të Dhënat"
 
 #: ckanext/datarequests/templates/datarequests/new.html:16
 msgid ""
-"To create a data request, fill the form and specify a title and a "
-"description for your request. Please, be as clear as you can in order to "
-"ease the task of accomplishing your request. You can also specify an "
-"organization if your data request is closely related with it. "
+"To create a data request, fill the form and specify a title and a description "
+"for your request. Please, be as clear as you can in order to ease the task of "
+"accomplishing your request. You can also specify an organization if your data "
+"request is closely related with it. "
 msgstr ""
-"Për të krijuar një kërkesë të të dhënave, plotësoni formularin dhe "
-"specifikoni një titull dhe një përshkrim për kërkesën tuaj. Ju lutemi, të"
-" jeni sa më qartë që mundeni, në mënyrë që të lehtësoni detyrën për të "
-"përmbushur kërkesën tuaj. Ju gjithashtu mund të specifikoni një "
-"organizatë nëse kërkesa juaj e të dhënave është e lidhur ngushtë me të."
+"Për të krijuar një kërkesë të të dhënave, plotësoni formularin dhe specifikoni "
+"një titull si dhe një përshkrim për kërkesën tuaj. Ju lutemi, të jeni sa më "
+"qartë që të mundeni, në mënyrë që ta lehtësoni detyrën për të përmbushur "
+"kërkesën tuaj. Ju gjithashtu mund të specifikoni një organizatë nëse kërkesa "
+"juaj e të dhënave është e lidhur ngushtë me të."
 
 #: ckanext/datarequests/templates/datarequests/show.html:15
 msgid "Manage"
@@ -360,7 +364,7 @@ msgstr "Menaxho"
 
 #: ckanext/datarequests/templates/datarequests/show.html:19
 msgid "Close"
-msgstr "Afër"
+msgstr "Mbyll"
 
 #: ckanext/datarequests/templates/datarequests/show.html:45
 #: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:26
@@ -370,7 +374,7 @@ msgstr "Mbyllur"
 
 #: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:2
 msgid "Additional Info"
-msgstr "Informacion shtesë"
+msgstr "Informacione shtesë"
 
 #: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:8
 msgid "Creator"
@@ -380,7 +384,7 @@ msgstr "Krijues"
 #: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:15
 #: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:41
 msgid "None"
-msgstr "Asnje"
+msgstr "Asnjë"
 
 #: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:20
 msgid "Created"
@@ -388,7 +392,7 @@ msgstr "Krijuar"
 
 #: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:27
 msgid "Not closed yet"
-msgstr "Nuk është mbyllur akoma"
+msgstr "Akoma nuk është mbyllur"
 
 #: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:49
 #: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:47
@@ -397,24 +401,23 @@ msgstr "Status"
 
 #: ckanext/datarequests/templates/datarequests/snippets/close_datarequest_form.html:11
 msgid "Accept Dataset"
-msgstr "Prano dataset"
+msgstr "Pranoni Setin e të Dhënave"
 
 #: ckanext/datarequests/templates/datarequests/snippets/comment_form.html:22
 msgid "Add a new Comment"
-msgstr "Shto një koment të ri"
+msgstr "Shtoni një koment të ri"
 
 #: ckanext/datarequests/templates/datarequests/snippets/comment_form.html:23
 #, python-format
 msgid ""
-"You can use <a href=\"#markdown\" title=\"Markdown quick reference\" "
-"data-target=\"popover\" data-content=\"%(markdown_tooltip)s\" data-"
-"html=\"true\">Markdown formatting</a> here. You can refer datasets by "
-"adding their URL."
+"You can use <a href=\"#markdown\" title=\"Markdown quick reference\" data-"
+"target=\"popover\" data-content=\"%(markdown_tooltip)s\" data-html=\"true"
+"\">Markdown formatting</a> here. You can refer datasets by adding their URL."
 msgstr ""
-"Ju mund të përdorni <a href=\"#markdown\" title=\"Markdown quick "
-"reference\" data-target=\"popover\" data-content=\"%(markdown_tooltip)s\""
-" data-html=\"true\">formatimin e Markdown</a> këtu. Ju mund t'i "
-"referoheni grupeve të të dhënave duke shtuar URL-në e tyre."
+"Ju mund të përdorni <a href=\"#markdown\" title=\"Markdown quick reference\" "
+"data-target=\"popover\" data-content=\"%(markdown_tooltip)s\" data-html=\"true"
+"\">formatimin e Markdown</a> këtu. Ju mund t'i referoheni grupeve të të dhënave "
+"duke shtuar URL-në e tyre."
 
 #: ckanext/datarequests/templates/datarequests/snippets/comment_form.html:28
 msgid "Cancel"
@@ -422,7 +425,7 @@ msgstr "Anuloj"
 
 #: ckanext/datarequests/templates/datarequests/snippets/comment_form.html:29
 msgid "Update Comment"
-msgstr "Përditëso komentin"
+msgstr "Përditësoni komentin"
 
 #: ckanext/datarequests/templates/datarequests/snippets/comment_form.html:31
 msgid "Add Comment"
@@ -430,7 +433,7 @@ msgstr "Shto koment"
 
 #: ckanext/datarequests/templates/datarequests/snippets/comment_item.html:18
 msgid "Are you sure you want to delete this comment?"
-msgstr "Je i sigurt që dëshiron ta fshish këtë koment?"
+msgstr "A jeni i sigurtë se dëshironi ta fshini këtë koment?"
 
 #: ckanext/datarequests/templates/datarequests/snippets/comment_item.html:29
 msgid "commented"
@@ -442,7 +445,7 @@ msgstr "Diskutimi aktual"
 
 #: ckanext/datarequests/templates/datarequests/snippets/comments.html:13
 msgid "This data request has not been commented yet"
-msgstr "Kjo kërkesë për të dhëna nuk është komentuar ende"
+msgstr "Kjo kërkesë për të dhënat akoma nuk është komentuar "
 
 #: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:17
 msgid "eg. Data Request Name"
@@ -466,25 +469,26 @@ msgstr "i dukshëm"
 
 #: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:51
 msgid ""
-"Your data request will not be visible until a site administrator reviews "
-"it."
-msgstr "Kërkesa juaj e të dhënave nuk do të shfaqet derisa një administrator i faqes ta rishikojë atë."
+"Your data request will not be visible until a site administrator reviews it."
+msgstr ""
+"Kërkesa juaj e të dhënave nuk do të shfaqet derisa administruesi i faqes ta "
+"rishikojë atë."
 
 #: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:60
 msgid "Are you sure you want to delete this data request?"
-msgstr "Je i sigurt që dëshiron ta fshish këtë kërkesë të të dhënave?"
+msgstr "A je i sigurtë se dëshironi ta fshini këtë kërkesë të të dhënave?"
 
 #: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:61
 msgid "Delete"
-msgstr "Fshij"
+msgstr "Fshirje"
 
 #: ckanext/datarequests/templates/datarequests/snippets/datarequest_list.html:1
 msgid "No Data Requests found"
-msgstr "Nuk u gjetën kërkesa për të dhëna"
+msgstr "Nuk u gjetën kërkesa për të dhënat"
 
 #: ckanext/datarequests/templates/datarequests/snippets/datarequest_list.html:14
 msgid "No Data Requests found with the given criteria"
-msgstr "Nuk u gjetën kërkesa për të dhëna me kriteret e dhëna"
+msgstr "Nuk u gjetën kërkesa për të dhënat me kriteret e dhëna"
 
 #: ckanext/datarequests/templates/datarequests/snippets/datarequest_list.html:16
 msgid "How about creating one?"
@@ -492,19 +496,19 @@ msgstr "Si të krijosh një?"
 
 #: ckanext/datarequests/templates/datarequests/snippets/edit_datarequest_form.html:4
 msgid "Update Data Request"
-msgstr "Përditëso kërkesën e të dhënave"
+msgstr "Përditësoni kërkesën e të dhënave"
 
 #: ckanext/datarequests/templates/datarequests/snippets/followers.html:11
 msgid "Followers"
-msgstr ""
+msgstr "Ndjekësit"
 
 #: ckanext/datarequests/templates/datarequests/snippets/followers.html:22
 msgid "Unfollow"
-msgstr ""
+msgstr "Mos e ndiq (shkyçuni)"
 
 #: ckanext/datarequests/templates/datarequests/snippets/followers.html:27
 msgid "Follow"
-msgstr "Ndjek"
+msgstr "Ndiq"
 
 #: ckanext/datarequests/templates/organization/read_base.html:5
 #: ckanext/datarequests/templates/user/read_base.html:8
@@ -514,20 +518,19 @@ msgstr "Rrjedha e aktivitetit"
 #: ckanext/datarequests/templates/snippets/custom_search_form.html:6
 msgid "{number} data request found for \"{query}\""
 msgid_plural "{number} data requests found for \"{query}\""
-msgstr[0] "{number} kërkesë për të dhënat e gjetur për \"{query}\""
+msgstr[0] "u gjet {number} kërkesë për të dhënat për \"{query}\""
 msgstr[1] "{number} kërkesa për të dhëna gjetur për \"{query}\""
 
 #: ckanext/datarequests/templates/snippets/custom_search_form.html:7
 msgid "No data requests found for \"{query}\""
-msgstr "Asnjë kërkesë e të dhënave nuk është gjetur për \"{query}\""
+msgstr "Asnjë kërkesë për të dhënat nuk është gjetur për \"{query}\""
 
 #: ckanext/datarequests/templates/snippets/custom_search_form.html:8
 msgid "{number} data request found"
 msgid_plural "{number} data requests found"
-msgstr[0] "U gjet {number} kërkesë e të dhënave"
+msgstr[0] "U gjet {number} kërkesë për të dhënat"
 msgstr[1] "U gjetën {number} kërkesa për të dhëna"
 
 #: ckanext/datarequests/templates/snippets/custom_search_form.html:9
 msgid "No data requests found"
-msgstr "Nuk u gjetën kërkesa për të dhëna"
-
+msgstr "Nuk u gjetën kërkesa për të dhënat"
