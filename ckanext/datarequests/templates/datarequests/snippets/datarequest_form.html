@@ -42,7 +42,7 @@ then itself be extended to add/remove blocks of functionality. #}
 {% endblock %}
 
   {% if h.check_access('sysadmin') %}
-    {{ form.select('visibility', label=_('Visibility'), options=[{'name':_('hidden'), 'value': 'hidden'},{'name': _('visible'), 'value': 'visible'}], selected=data.visibility, error=errors.hidden) }}
+    {{ form.select('visibility', label=_('Visibility'), options=[{'text':_('hidden'), 'name': 'hidden', 'value': 'hidden'},{'text': _('visible'), 'name': 'visible', 'value': 'visible'}], selected=data.visibility, error=errors.hidden) }}
 
     {{ form.select('status', label=_('Status'), options=h.get_datarequest_statuses(), selected=data.status, error=errors.hidden) }}
 
