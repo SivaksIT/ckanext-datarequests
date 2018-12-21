@@ -291,7 +291,7 @@ msgstr "Kërkesat e të dhënave"
 #: ckanext/datarequests/templates/header.html:9
 #: ckanext/datarequests/templates/organization/read_base.html:7
 msgid "About"
-msgstr "Për portalin"
+msgstr "Rreth portalit"
 
 #: ckanext/datarequests/templates/datarequests/base.html:20
 msgid ""
