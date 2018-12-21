@@ -289,7 +289,7 @@ msgstr "Барања за податоци"
 #: ckanext/datarequests/templates/header.html:9
 #: ckanext/datarequests/templates/organization/read_base.html:7
 msgid "About"
-msgstr "За"
+msgstr "За Порталот"
 
 #: ckanext/datarequests/templates/datarequests/base.html:20
 msgid ""
