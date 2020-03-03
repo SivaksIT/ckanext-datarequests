@@ -521,7 +521,7 @@ def list_datarequests(context, data_dict):
 
     visibility_facet = [{
         'name': facet.name,
-        'display_name': facet.name.title(),
+        'display_name': tk._(facet.name.title()),
         'count': count
     } for facet, count in no_processed_visibility_facet.items() if count]
 
