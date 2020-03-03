@@ -47,7 +47,7 @@
         {% if datarequest.status %}
           <tr>
               <th scope="row" class="dataset-label">{{ _('Status') }}</th>
-              <td class="dataset-details">{{ datarequest.status }}</td>
+              <td class="dataset-details">{{ _('Closed') if c.datarequest.closed else _('Open') }}</td>
           </tr>
         {% endif %}
       {% endblock %}
