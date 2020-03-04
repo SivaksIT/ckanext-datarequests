@@ -293,6 +293,12 @@ msgstr "Kërkesat e të dhënave"
 msgid "About"
 msgstr "Rreth portalit"
 
+msgid "About the organization"
+msgstr "Rreth Organizatat"
+
+msgid "About the group"
+msgstr "Rreth grupet"
+
 #: ckanext/datarequests/templates/datarequests/base.html:20
 msgid ""
 "Data Requests allow users to ask for data that is not published in the platform "
