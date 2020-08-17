@@ -18,13 +18,13 @@
         {% block offering_created %}
           <tr>
             <th scope="row" class="dataset-label">{{ _('Created') }}</th>
-            <td class="dataset-details" title="{{ datarequest.open_time }}">{{ h.time_ago_from_timestamp(datarequest.open_time) }}</td>
+            <td class="dataset-details" title="{{ datarequest.open_time }}">{{ h.calculate_time_passed_comment(datarequest.open_time) }}</td>
           </tr>
         {% endblock %}
         {% block offering_closed %}
           <tr>
             <th scope="row" class="dataset-label">{{ _('Closed') }}</th>
-            <td class="dataset-details" title="{{ datarequest.close_time }}">{{ h.time_ago_from_timestamp(datarequest.close_time) if datarequest.close_time else _('Not closed yet') }}</td>
+            <td class="dataset-details" title="{{ datarequest.close_time }}">{{ h.calculate_time_passed_comment(datarequest.close_time) if datarequest.close_time else _('Not closed yet') }}</td>
           </tr>
         {% endblock %}
 

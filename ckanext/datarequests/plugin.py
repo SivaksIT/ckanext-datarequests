@@ -180,4 +180,5 @@ class DataRequestsPlugin(p.SingletonPlugin):
             'get_open_datarequests_number': helpers.get_open_datarequests_number,
             'get_open_datarequests_badge': partial(helpers.get_open_datarequests_badge, self._show_datarequests_badge),
             'check_access': helpers.check_access,
+            'calculate_time_passed_comment': helpers.calculate_time_passed_comment,
         }

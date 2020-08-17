@@ -6,7 +6,7 @@
         <a href="{{ h.url_for(controller='user', action='read', id=comment.user.get('name')) }}">{{ comment.user.get('display_name') }}</a>
     </span>
 
-    <span class="date" title="{{ comment.time }}"> {{ h.time_ago_from_timestamp(comment.time) }}</span>
+    <span class="date" title="{{ h.calculate_time_passed_comment(comment.time) }}"> {{ h.calculate_time_passed_comment(comment.time) }}</span>
 
     <span class="pull-right">
       {% if h.check_access('datarequest_comment_delete', {'id':comment.id }) %}

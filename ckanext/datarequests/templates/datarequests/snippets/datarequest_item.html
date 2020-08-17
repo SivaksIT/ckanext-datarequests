@@ -26,7 +26,7 @@
           <a href="{{ h.url_for(controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI', action='comment', id=datarequest.get('id','')) }}" class="label"><i class="icon-comment"></i> {{ h.get_comments_number(datarequest.get('id', '')) }}</span></a>
         {% endif %}
         <div class="divider"/>
-        <span class="date-datarequests">{{ h.time_ago_from_timestamp(datarequest.open_time) }}</span>
+        <span class="date-datarequests">{{ h.calculate_time_passed_comment(datarequest.open_time) }}</span>
       </div>
     </div>
   {% endblock %}

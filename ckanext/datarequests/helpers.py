@@ -16,6 +16,10 @@
 
 # You should have received a copy of the GNU Affero General Public License
 # along with CKAN Data Requests Extension. If not, see <http://www.gnu.org/licenses/>.
+import pytz
+import humanize
+from dateutil.tz import tzlocal
+from datetime import datetime, timedelta
 
 import ckan.model as model
 import ckan.logic as logic
@@ -65,3 +69,16 @@ def check_access(action, data_dict=None):
  
     return authorized
 
+def calculate_time_passed_comment(str):
+
+    now = datetime.now()
+    new_date = str.split('T')
+    new_date = ' '.join(new_date)
+
+    date_time_obj = datetime.strptime(new_date, '%Y-%m-%d %H:%M:%S.%f')
+    when_commented_aware = pytz.utc.localize(date_time_obj)
+
+    now_aware = pytz.utc.localize(now)
+    diff = humanize.naturaltime(now_aware - when_commented_aware)
+
+    return diff
