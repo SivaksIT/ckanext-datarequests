@@ -34,6 +34,8 @@ import ckan.lib.mailer as mailer
 
 from pylons import config
 
+from pprint import pprint
+
 c = plugins.toolkit.c
 log = logging.getLogger(__name__)
 tk = plugins.toolkit
@@ -459,8 +461,10 @@ def list_datarequests(context, data_dict):
     datarequests = []
     offset = data_dict.get('offset', 0)
     limit = data_dict.get('limit', constants.DATAREQUESTS_PER_PAGE)
+    user_is_sysadmin = context['auth_user_obj'].sysadmin
     for data_req in db_datarequests[offset:offset + limit]:
-        datarequests.append(_dictize_datarequest(data_req))
+        if (user_is_sysadmin or data_req.visibility == 1):
+            datarequests.append(_dictize_datarequest(data_req))
 
     # Facets
     no_processed_organization_facet = {}
@@ -507,7 +511,7 @@ def list_datarequests(context, data_dict):
             })
 
     result = {
-        'count': len(db_datarequests),
+        'count': len(datarequests),
         'facets': {},
         'result': datarequests
     }
@@ -526,6 +530,19 @@ def list_datarequests(context, data_dict):
     } for facet, count in no_processed_visibility_facet.items() if count]
 
     result['facets']['visibility'] = {'items': visibility_facet}
+
+    # print("-----------------------------result-----------------------------")
+    # pprint(result)
+    # for i in range(0, len(result['result'])):
+    #     print("-----------------------------result['result'][" + str(i) + "]-----------------------------")
+    #     print("description:")
+    #     print(result['result'][i]['description'])
+    #     print("user:")
+    #     print(result['result'][i]['user'])
+    #     print("status:")
+    #     print(result['result'][i]['status'])
+    #     print("visibility:")
+    #     print(result['result'][i]['visibility'])
 
     return result
 
