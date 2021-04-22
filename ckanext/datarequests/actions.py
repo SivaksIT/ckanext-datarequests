@@ -474,17 +474,18 @@ def list_datarequests(context, data_dict):
         constants.DataRequestState.visible: 0.
     }
     for data_req in db_datarequests:
-        if data_req.organization_id:
-            # Facets
-            if data_req.organization_id in no_processed_organization_facet:
-                no_processed_organization_facet[data_req.organization_id] += 1
-            else:
-                no_processed_organization_facet[data_req.organization_id] = 1
+        if (user_is_sysadmin or data_req.visibility == 1):
+            if data_req.organization_id:
+                # Facets
+                if data_req.organization_id in no_processed_organization_facet:
+                    no_processed_organization_facet[data_req.organization_id] += 1
+                else:
+                    no_processed_organization_facet[data_req.organization_id] = 1
 
-        no_processed_state_facet[CLOSED if data_req.closed else OPEN] += 1
+            no_processed_state_facet[CLOSED if data_req.closed else OPEN] += 1
 
-        visibility = _get_visibility_from_code(data_req.visibility)
-        no_processed_visibility_facet[visibility] += 1
+            visibility = _get_visibility_from_code(data_req.visibility)
+            no_processed_visibility_facet[visibility] += 1
 
     # Format facets
     organization_facet = []
