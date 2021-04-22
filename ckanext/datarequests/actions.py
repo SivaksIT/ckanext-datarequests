@@ -34,8 +34,6 @@ import ckan.lib.mailer as mailer
 
 from pylons import config
 
-from pprint import pprint
-
 c = plugins.toolkit.c
 log = logging.getLogger(__name__)
 tk = plugins.toolkit
@@ -530,19 +528,6 @@ def list_datarequests(context, data_dict):
     } for facet, count in no_processed_visibility_facet.items() if count]
 
     result['facets']['visibility'] = {'items': visibility_facet}
-
-    # print("-----------------------------result-----------------------------")
-    # pprint(result)
-    # for i in range(0, len(result['result'])):
-    #     print("-----------------------------result['result'][" + str(i) + "]-----------------------------")
-    #     print("description:")
-    #     print(result['result'][i]['description'])
-    #     print("user:")
-    #     print(result['result'][i]['user'])
-    #     print("status:")
-    #     print(result['result'][i]['status'])
-    #     print("visibility:")
-    #     print(result['result'][i]['visibility'])
 
     return result
 
