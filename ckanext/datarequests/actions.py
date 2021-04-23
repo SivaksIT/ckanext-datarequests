@@ -459,7 +459,10 @@ def list_datarequests(context, data_dict):
     datarequests = []
     offset = data_dict.get('offset', 0)
     limit = data_dict.get('limit', constants.DATAREQUESTS_PER_PAGE)
-    user_is_sysadmin = context['auth_user_obj'].sysadmin
+    if (context['auth_user_obj'] is None):
+        user_is_sysadmin = False
+    else:
+        user_is_sysadmin = context['auth_user_obj'].sysadmin
     for data_req in db_datarequests[offset:offset + limit]:
         if (user_is_sysadmin or data_req.visibility == 1):
             datarequests.append(_dictize_datarequest(data_req))
