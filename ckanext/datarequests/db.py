@@ -57,7 +57,7 @@ def init_db(model):
                 return query.filter(func.lower(cls.title) == func.lower(title)).first() is not None
 
             @classmethod
-            def get_ordered_by_date(cls, organization_id=None, user_id=None, closed=None, q=None, desc=False):
+            def get_ordered_by_date(cls, organization_id=None, user_id=None, closed=None, q=None, desc=False, visibility=None):
                 '''Personalized query'''
                 query = model.Session.query(cls).autoflush(False)
 
@@ -71,6 +71,9 @@ def init_db(model):
 
                 if closed is not None:
                     params['closed'] = closed
+
+                if visibility is not None:
+                    params['visibility'] = visibility
 
                 if q is not None:
                     search_expr = '%{0}%'.format(q)

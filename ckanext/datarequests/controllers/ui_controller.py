@@ -113,6 +113,7 @@ class DataRequestsUI(base.BaseController):
             q = request.GET.get('q', '')
             if q:
                 data_dict['q'] = q
+
             is_sysadmin = authz.is_sysadmin(c.user)
             if is_sysadmin:
                 visibility = request.GET.get('visibility', None)
@@ -140,6 +141,8 @@ class DataRequestsUI(base.BaseController):
             c.q = q
             c.organization = organization_id
             c.state = state
+            if is_sysadmin:
+                c.visibility = visibility
             c.datarequest_count = datarequests_list['count']
             c.datarequests = datarequests_list['result']
             c.search_facets = datarequests_list['facets']

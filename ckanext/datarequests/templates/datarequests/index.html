@@ -9,7 +9,7 @@
             {% link_for _('Add Data Request'), controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI', action='new', class_='btn btn-primary', icon=h.get_plus_icon() %}
           </div>
         {% endif %}
-        {% snippet 'snippets/custom_search_form.html', query=c.q, fields=(('organization', c.organization), ('state', c.state)), sorting=c.filters, sorting_selected=c.sort, placeholder=_('Search Data Requests...'), no_bottom_border=true, count=c.datarequest_count, no_title=True %}
+        {% snippet 'snippets/custom_search_form.html', query=c.q, fields=(('organization', c.organization), ('state', c.state), ('visibility', c.visibility)), sorting=c.filters, sorting_selected=c.sort, placeholder=_('Search Data Requests...'), no_bottom_border=true, count=c.datarequest_count, no_title=True %}
         {{ h.snippet('datarequests/snippets/datarequest_list.html', datarequest_count=c.datarequest_count, datarequests=c.datarequests, page=c.page, q=c.q)}}
       {% endblock %}
     </div>
@@ -19,6 +19,10 @@
 {% block secondary_content %}
   {{ super() }}
   {% for facet in c.facet_titles %}
+  <div>
+	  {{ c.facet_titles[facet] }}
+	  {{ facet }}
+  </div>
     {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
   {% endfor %}
 {% endblock %}

@@ -443,6 +443,14 @@ def list_datarequests(context, data_dict):
     # Free text filter
     q = data_dict.get('q', None)
 
+    visibility = None
+    # Filter by visibility:
+    if 'visibility' in data_dict:
+        if (data_dict['visibility'] == "visible"):
+            visibility = 1
+        elif (data_dict['visibility'] == "hidden"):
+            visibility = 0
+
     # Sort. By default, data requests are returned in the order they are created
     # This is something new in version 0.3.0. In previous versions, requests were
     # returned in inverse order
@@ -453,7 +461,7 @@ def list_datarequests(context, data_dict):
     # Call the function
     db_datarequests = db.DataRequest.get_ordered_by_date(organization_id=organization_id,
                                                          user_id=user_id, closed=closed,
-                                                         q=q, desc=desc)
+                                                         q=q, desc=desc, visibility=visibility)
 
     # Dictize the results
     datarequests = []
