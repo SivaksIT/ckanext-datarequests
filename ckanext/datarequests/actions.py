@@ -228,8 +228,6 @@ def create_datarequest(context, data_dict):
     :rtype: dict
     '''
 
-    print(data_dict)
-
     model = context['model']
     session = context['session']
 

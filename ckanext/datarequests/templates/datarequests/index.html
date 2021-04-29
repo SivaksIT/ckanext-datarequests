@@ -19,10 +19,6 @@
 {% block secondary_content %}
   {{ super() }}
   {% for facet in c.facet_titles %}
-  <div>
-	  {{ c.facet_titles[facet] }}
-	  {{ facet }}
-  </div>
     {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
   {% endfor %}
 {% endblock %}
