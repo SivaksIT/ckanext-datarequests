@@ -25,11 +25,12 @@ import ckan.model as model
 import ckan.plugins as plugins
 import ckan.lib.helpers as helpers
 import ckanext.datarequests.constants as constants
+import ckan.logic as logic
 import collections
 import functools
 import re
 
-from ckan.common import request
+from ckan.common import _, request, config
 from urllib import urlencode
 
 
@@ -38,6 +39,40 @@ _link = re.compile(r'(?:(https?://)|(www\.))(\S+\b/?)([!"#$%&\'()*+,\-./:;<=>?@[
 log = logging.getLogger(__name__)
 tk = plugins.toolkit
 c = tk.c
+
+import urllib
+import urllib2
+import json
+
+def _check_recaptcha(remote_ip, recaptcha_response):
+    '''Check a user\'s recaptcha submission is valid, and raise CaptchaError
+    on failure.'''
+
+    recaptcha_private_key = config.get('ckan.recaptcha.privatekey', '')
+    if not recaptcha_private_key:
+        # Recaptcha not enabled
+        return
+
+    recaptcha_server_name = 'https://www.google.com/recaptcha/api/siteverify'
+
+    # recaptcha_response_field will be unicode if there are foreign chars in
+    # the user input. So we need to encode it as utf8 before urlencoding or
+    # we get an exception (#1431).
+    params = urllib.urlencode(dict(secret=recaptcha_private_key,
+                                   remoteip=remote_ip,
+                                   response=recaptcha_response))
+    f = urllib2.urlopen(recaptcha_server_name, params)
+    data = json.load(f)
+    f.close()
+
+    try:
+        if not data['success']:
+            return False
+        else:
+            return True
+    except IndexError:
+        # Something weird with recaptcha response
+        return False
 
 
 def _get_errors_summary(errors):
@@ -204,7 +239,9 @@ class DataRequestsUI(base.BaseController):
                 c.errors = e.error_dict
                 c.errors_summary = _get_errors_summary(c.errors)
 
+
     def new(self):
+
         context = self._get_context()
 
         # Basic intialization
@@ -215,12 +252,25 @@ class DataRequestsUI(base.BaseController):
         # Check access
         try:
             tk.check_access(constants.CREATE_DATAREQUEST, context, None)
-            self._process_post(constants.CREATE_DATAREQUEST, context)
+
+            if request.POST:
+                data_dict = dict(request.POST.items())
+                recaptcha_response = data_dict['g-recaptcha-response']
+                remote_ip = request.environ.get('REMOTE_ADDR', 'Unknown IP Address')
+
+                if ( _check_recaptcha(remote_ip, recaptcha_response) ):
+                    self._process_post(constants.CREATE_DATAREQUEST, context)
+                else:
+                    error_msg = _(u'Bad Captcha. Please try again.')
+                    helpers.flash_error(error_msg)
+                    #return data_dict
+                    #return tk.render('datarequests/new.html')
 
             # The form is always rendered
             return tk.render('datarequests/new.html')
 
         except tk.NotAuthorized as e:
+
             log.warn(e)
             tk.abort(401, tk._('You need to be logged in to create a Data Request'))
 
