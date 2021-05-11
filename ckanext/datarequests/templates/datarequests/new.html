@@ -9,9 +9,7 @@
 
 {% block primary_content_inner %}
   <h1 class="{% block page_heading_class %}page-heading{% endblock %}">{% block page_heading %}{{ _('Create Data Request') }}{% endblock %}</h1>
-  {% snippet "datarequests/snippets/new_datarequest_form.html", data=c.datarequest, errors=c.errors, errors_summary=c.errors_summary, offering=c.offering %}
-
-
+  {% snippet "datarequests/snippets/new_datarequest_form.html", data=datareq_post_data, errors=c.errors, errors_summary=c.errors_summary, offering=c.offering, creates_new=creates_new %}
 
 {% endblock %}
 

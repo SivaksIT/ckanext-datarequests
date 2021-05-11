@@ -53,7 +53,9 @@ then itself be extended to add/remove blocks of functionality. #}
 
   {% endif %}
 
-  {% snippet "datarequests/snippets/datareq_captcha.html", public_key=g.recaptcha_publickey %}
+  {% if creates_new is defined %}
+    {% snippet "datarequests/snippets/datareq_captcha.html", public_key=g.recaptcha_publickey %}
+  {% endif %}
 
   {% block form_actions %}
     <div class="form-actions">
@@ -66,6 +68,5 @@ then itself be extended to add/remove blocks of functionality. #}
       <button class="btn btn-primary" type="submit" name="save">{% block save_button_text %}{{ _('Create Data Request') }}{% endblock %}</button>
     </div>
   {% endblock %}
-
 
 </form>

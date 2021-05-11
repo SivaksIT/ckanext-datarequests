@@ -254,8 +254,8 @@ class DataRequestsUI(base.BaseController):
             tk.check_access(constants.CREATE_DATAREQUEST, context, None)
 
             if request.POST:
-                data_dict = dict(request.POST.items())
-                recaptcha_response = data_dict['g-recaptcha-response']
+                datareq_post_data = dict(request.POST.items())
+                recaptcha_response = datareq_post_data['g-recaptcha-response']
                 remote_ip = request.environ.get('REMOTE_ADDR', 'Unknown IP Address')
 
                 if ( _check_recaptcha(remote_ip, recaptcha_response) ):
@@ -263,11 +263,13 @@ class DataRequestsUI(base.BaseController):
                 else:
                     error_msg = _(u'Bad Captcha. Please try again.')
                     helpers.flash_error(error_msg)
-                    #return data_dict
-                    #return tk.render('datarequests/new.html')
 
-            # The form is always rendered
-            return tk.render('datarequests/new.html')
+                del datareq_post_data['g-recaptcha-response']
+                return tk.render('datarequests/new.html', extra_vars={'creates_new': 'YES', 'datareq_post_data': datareq_post_data})
+
+            else:
+                datareq_post_data = {}
+                return tk.render('datarequests/new.html', extra_vars={'creates_new': 'YES', 'datareq_post_data': datareq_post_data})
 
         except tk.NotAuthorized as e:
 
