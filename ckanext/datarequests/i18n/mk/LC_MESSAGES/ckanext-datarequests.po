@@ -468,7 +468,7 @@ msgstr "видливо"
 msgid ""
 "Your data request will not be visible until a site administrator reviews "
 "it."
-msgstr "Вашето барање нема да е видливо се додека администраторт не го прегледа."
+msgstr "Вашето барање нема да е видливо се додека администраторот не го прегледа."
 
 #: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:60
 msgid "Are you sure you want to delete this data request?"
