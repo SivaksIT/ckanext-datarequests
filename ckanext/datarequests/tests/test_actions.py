@@ -24,9 +24,8 @@ import test_actions_data as test_data
 import unittest
 
 from mock import MagicMock, patch
-from nose_parameterized import parameterized
-
-
+import pytest
+from parameterized import parameterized, parameterized_class
 class ActionsTest(unittest.TestCase):
 
     def setUp(self):
@@ -65,46 +64,45 @@ class ActionsTest(unittest.TestCase):
         actions.datetime = self._datetime
 
     def _check_comment(self, comment, response, user):
-        self.assertEquals(comment.id, response['id'])
-        self.assertEquals(comment.comment, response['comment'])
-        self.assertEquals(str(comment.time), response['time'])
-        self.assertEquals(comment.user_id, response['user_id'])
-        self.assertEquals(user, response['user'])
-        self.assertEquals(comment.datarequest_id, response['datarequest_id'])
+        assert comment.id == response['id']
+        assert comment.comment == response['comment']
+        assert str(comment.time) == response['time']
+        assert comment.user_id == response['user_id']
+        assert user == response['user']
+        assert comment.datarequest_id == response['datarequest_id']
 
     def _check_basic_response(self, datarequest, response, user, organization=None, accepted_dataset=None):
-        self.assertEquals(datarequest.id, response['id'])
-        self.assertEquals(datarequest.user_id, response['user_id'])
-        self.assertEquals(user, response['user'])
-        self.assertEquals(datarequest.title, response['title'])
-        self.assertEquals(datarequest.description, response['description'])
-        self.assertEquals(datarequest.organization_id, response['organization_id'])
-        self.assertEquals(str(datarequest.open_time), response['open_time'])
-        self.assertEquals(datarequest.closed, response['closed'])
-        self.assertEquals(datarequest.accepted_dataset_id, response['accepted_dataset_id'])
-
+        assert datarequest.id == response['id']
+        assert datarequest.user_id == response['user_id']
+        assert user == response['user']
+        assert datarequest.title == response['title']
+        assert datarequest.description == response['description'] 
+        assert datarequest.organization_id == response['organization_id']
+        assert str(datarequest.open_time) == response['open_time']
+        assert datarequest.closed == response['closed']
+        assert datarequest.accepted_dataset_id == response['accepted_dataset_id']
+        
         if organization:
-            self.assertEquals(organization, response['organization'])
+            assert organization == response['organization']
 
         if accepted_dataset:
-            self.assertEquals(accepted_dataset, response['accepted_dataset'])
+            assert accepted_dataset == response['accepted_dataset']
 
         if datarequest.close_time:
-            self.assertEquals(str(datarequest.close_time), response['close_time'])
+            assert str(datarequest.close_time) == response['close_time']
         else:
-            self.assertIsNone(response['close_time'])
+            assert response['close_time'] is None
 
 
     ######################################################################
     ################################# AUX ################################
     ######################################################################
-
     def _test_not_authorized(self, function, action, request_data):
         # Configure the mock
         actions.tk.check_access = MagicMock(side_effect=self._tk.NotAuthorized)
 
         # Call the function
-        with self.assertRaises(self._tk.NotAuthorized):
+        with pytest.raises(self._tk.NotAuthorized):
             function(self.context, request_data)
 
         # Assertions
@@ -117,7 +115,7 @@ class ActionsTest(unittest.TestCase):
         actions.db.DataRequest.get.return_value = []
 
         # Call the function
-        with self.assertRaises(self._tk.ObjectNotFound):
+        with pytest.raises(self._tk.ObjectNotFound):
             function(self.context, request_data)
 
         # Assertions
@@ -127,20 +125,20 @@ class ActionsTest(unittest.TestCase):
 
     def _test_no_id(self, function):
         # Call the function
-        with self.assertRaises(self._tk.ValidationError):
+        with pytest.raises(self._tk.ValidationError):
             function(self.context, {})
 
         # Assertions
-        self.assertEquals(0, actions.db.init_db.call_count)
-        self.assertEquals(0, actions.tk.check_access.call_count)
-        self.assertEquals(0, actions.db.DataRequest.get.call_count)
+        assert 0 == actions.db.init_db.call_count
+        assert 0 == actions.tk.check_access.call_count
+        assert 0 == actions.db.DataRequest.get.call_count
 
     def _test_comment_not_found(self, function, action, request_data):
         # Configure the mock
         actions.db.Comment.get.return_value = []
 
         # Call the function
-        with self.assertRaises(self._tk.ObjectNotFound):
+        with pytest.raises(self._tk.ObjectNotFound):        
             function(self.context, request_data)
 
         # Assertions
@@ -174,7 +172,7 @@ class ActionsTest(unittest.TestCase):
 
         result = actions._get_datarequest_involved_users(self.context, datarequest)
 
-        self.assertEquals(set(['user-2', 'user-3']), result)
+        assert set(['user-2', 'user-3']) == result
 
         actions.db.DataRequestFollower.get.assert_called_once_with(datarequest_id=datarequest_id)
         list_comments_mock.assert_called_once_with({'ignore_auth': True, 'model': self.context['model']}, {'datarequest_id': datarequest_id})
@@ -200,7 +198,7 @@ class ActionsTest(unittest.TestCase):
 
         result = actions._get_datarequest_involved_users(self.context, datarequest)
 
-        self.assertEquals(set(['user-1', 'user-2', 'user-3']), result)
+        assert set(['user-1', 'user-2', 'user-3']) == result
 
         actions.db.DataRequestFollower.get.assert_called_once_with(datarequest_id=datarequest_id)
         list_comments_mock.assert_called_once_with({'ignore_auth': True, 'model': self.context['model']}, {'datarequest_id': datarequest_id})
@@ -311,32 +309,32 @@ class ActionsTest(unittest.TestCase):
         actions.tk.check_access = MagicMock(side_effect=self._tk.NotAuthorized)
 
         # Call the function
-        with self.assertRaises(self._tk.NotAuthorized):
+        with pytest.raises(self._tk.NotAuthorized):
             actions.create_datarequest(self.context, test_data.create_request_data)
 
         # Assertions
         actions.db.init_db.assert_called_once_with(self.context['model'])
         actions.tk.check_access.assert_called_once_with(constants.CREATE_DATAREQUEST, self.context, test_data.create_request_data)
-        self.assertEquals(0, actions.validator.validate_datarequest.call_count)
-        self.assertEquals(0, actions.db.DataRequest.call_count)
-        self.assertEquals(0, self.context['session'].add.call_count)
-        self.assertEquals(0, self.context['session'].commit.call_count)
+        assert 0 == actions.validator.validate_datarequest.call_count
+        assert 0 == actions.db.DataRequest.call_count
+        assert 0 == self.context['session'].add.call_count
+        assert 0 == self.context['session'].commit.call_count
 
     def test_create_datarequest_invalid(self):
         # Configure the mock
         actions.validator.validate_datarequest = MagicMock(side_effect=self._tk.ValidationError({'error': 'MSG ERROR'}))
 
         # Call the function
-        with self.assertRaises(self._tk.ValidationError):
+        with pytest.raises(self._tk.ValidationError):
             actions.create_datarequest(self.context, test_data.create_request_data)
 
         # Assertions
         actions.db.init_db.assert_called_once_with(self.context['model'])
         actions.tk.check_access.assert_called_once_with(constants.CREATE_DATAREQUEST, self.context, test_data.create_request_data)
         actions.validator.validate_datarequest.assert_called_once_with(self.context, test_data.create_request_data)
-        self.assertEquals(0, actions.db.DataRequest.call_count)
-        self.assertEquals(0, self.context['session'].add.call_count)
-        self.assertEquals(0, self.context['session'].commit.call_count)
+        assert 0 == actions.db.DataRequest.call_count
+        assert 0 == self.context['session'].add.call_count
+        assert 0 == self.context['session'].commit.call_count
 
     @patch('ckanext.datarequests.actions._send_mail')
     def test_create_datarequest_valid(self, send_mail_mock):
@@ -366,11 +364,11 @@ class ActionsTest(unittest.TestCase):
         send_mail_mock.assert_called_once_with(set(['user_1', 'user_2']), 'new_datarequest', result)
 
         # Check the object stored in the database
-        self.assertEquals(self.context['auth_user_obj'].id, datarequest.user_id)
-        self.assertEquals(test_data.create_request_data['title'], datarequest.title)
-        self.assertEquals(test_data.create_request_data['description'], datarequest.description)
-        self.assertEquals(test_data.create_request_data['organization_id'], datarequest.organization_id)
-        self.assertEquals(current_time, datarequest.open_time)
+        assert self.context['auth_user_obj'].id == datarequest.user_id
+        assert test_data.create_request_data['title'] == datarequest.title
+        assert test_data.create_request_data['description'] == datarequest.description
+        assert test_data.create_request_data['organization_id'] == datarequest.organization_id
+        assert current_time == datarequest.open_time
 
         # Check the returned object
         self._check_basic_response(datarequest, result, default_user, default_org, default_pkg)
@@ -445,18 +443,18 @@ class ActionsTest(unittest.TestCase):
 
     def test_update_datarequest_not_authorized(self):
         self._test_not_authorized(actions.update_datarequest, constants.UPDATE_DATAREQUEST, test_data.update_request_data)
-        self.assertEquals(0, actions.validator.validate_datarequest.call_count)
-        self.assertEquals(0, self.context['session'].add.call_count)
-        self.assertEquals(0, self.context['session'].commit.call_count)
+        assert 0 == actions.validator.validate_datarequest.call_count
+        assert 0 == self.context['session'].add.call_count
+        assert 0 == self.context['session'].commit.call_count
 
     def test_update_datarequest_no_id(self):
         self._test_no_id(actions.update_datarequest)
 
     def test_update_datarequest_not_found(self):
         self._test_not_found(actions.update_datarequest, constants.UPDATE_DATAREQUEST, test_data.update_request_data)
-        self.assertEquals(0, actions.validator.validate_datarequest.call_count)
-        self.assertEquals(0, self.context['session'].add.call_count)
-        self.assertEquals(0, self.context['session'].commit.call_count)
+        assert 0 == actions.validator.validate_datarequest.call_count
+        assert 0 == self.context['session'].add.call_count
+        assert 0 == self.context['session'].commit.call_count
 
     @parameterized.expand([
         (True,),
@@ -500,10 +498,10 @@ class ActionsTest(unittest.TestCase):
         self.context['session'].commit.assert_called_once()
 
         # Check the object stored in the database
-        self.assertEquals(previous_user_id, datarequest.user_id)
-        self.assertEquals(test_data.update_request_data['title'], datarequest.title)
-        self.assertEquals(test_data.update_request_data['description'], datarequest.description)
-        self.assertEquals(test_data.update_request_data['organization_id'], datarequest.organization_id)
+        assert previous_user_id == datarequest.user_id
+        assert test_data.update_request_data['title'] == datarequest.title
+        assert test_data.update_request_data['description'] == datarequest.description
+        assert test_data.update_request_data['organization_id'] == datarequest.organization_id
 
         # Check the result
         org = default_org if organization_id else None
@@ -591,7 +589,7 @@ class ActionsTest(unittest.TestCase):
             datarequest['user'] = default_user
 
         # Assert that organization_show has been called the appropriate number of times
-        self.assertEquals(organization_show.call_count - count, expected_organization_show_calls)
+        assert organization_show.call_count - count == expected_organization_show_calls
 
         # user, organization and accepted_dataset are None by default. The value of these fields
         # must be set based on the value returned by the defined actions
@@ -604,16 +602,16 @@ class ActionsTest(unittest.TestCase):
         # Check that the result is correct
         # We cannot execute self.assertEquals (for facets) because items
         # can have different orders
-        self.assertEquals(expected_response['count'], response['count'])
-        self.assertEquals(expected_response['result'], response['result'])
+        assert expected_response['count'] == response['count']
+        assert expected_response['result'] == response['result']
 
         for facet in expected_response['facets']:
             items = expected_response['facets'][facet]['items']
 
             # The response has the facet
-            self.assertIn(facet, response['facets'])
+            assert facet in response['facets']
             # The number of items is the same
-            self.assertEquals(len(items), len(response['facets'][facet]['items']))
+            assert len(items) == len(response['facets'][facet]['items'])
 
             # The items are the same ones
             for item in items:
@@ -725,12 +723,12 @@ class ActionsTest(unittest.TestCase):
         self.context['session'].commit.assert_called_once_with()
 
         # The data object returned by the database has been modified appropriately
-        self.assertTrue(datarequest.closed)
-        self.assertEquals(datarequest.close_time, current_time)
+        assert datarequest.closed 
+        assert datarequest.close_time == current_time
         if expected_accepted_ds:
-            self.assertEquals(datarequest.accepted_dataset_id, data['accepted_dataset_id'])
+            assert datarequest.accepted_dataset_id == data['accepted_dataset_id']
         else:
-            self.assertIsNone(datarequest.accepted_dataset_id)
+            assert datarequest.accepted_dataset_id is None
 
         org = default_org if organization_id else None
         pkg = default_pkg if expected_accepted_ds else None
@@ -759,16 +757,16 @@ class ActionsTest(unittest.TestCase):
         actions.validator.validate_comment = MagicMock(side_effect=self._tk.ValidationError({'error': 'MSG ERROR'}))
 
         # Call the function
-        with self.assertRaises(self._tk.ValidationError):
+        with pytest.raises(self._tk.ValidationError):
             function(self.context, request_data)
 
         # Assertions
         actions.db.init_db.assert_called_once_with(self.context['model'])
         actions.tk.check_access.assert_called_once_with(check_access, self.context, request_data)
         actions.validator.validate_comment.assert_called_once_with(self.context, request_data)
-        self.assertEquals(0, actions.db.DataRequest.call_count)
-        self.assertEquals(0, self.context['session'].add.call_count)
-        self.assertEquals(0, self.context['session'].commit.call_count)
+        assert 0 == actions.db.DataRequest.call_count
+        assert 0 == self.context['session'].add.call_count
+        assert 0 == self.context['session'].commit.call_count
 
     @patch('ckanext.datarequests.actions._send_mail')
     @patch('ckanext.datarequests.actions._get_datarequest_involved_users')
@@ -798,10 +796,10 @@ class ActionsTest(unittest.TestCase):
         self.context['session'].commit.assert_called_once()
 
         # Check the object stored in the database
-        self.assertEquals(self.context['auth_user_obj'].id, comment.user_id)
-        self.assertEquals(test_data.comment_request_data['comment'], comment.comment)
-        self.assertEquals(test_data.comment_request_data['datarequest_id'], comment.datarequest_id)
-        self.assertEquals(current_time, comment.time)
+        assert self.context['auth_user_obj'].id, comment.user_id
+        assert test_data.comment_request_data['comment'], comment.comment
+        assert test_data.comment_request_data['datarequest_id'], comment.datarequest_id
+        assert current_time, comment.time
 
         # Check that the response is OK
         self._check_comment(comment, result, default_user)
@@ -813,7 +811,7 @@ class ActionsTest(unittest.TestCase):
     ######################################################################
     ############################ SHOW COMMENT ############################
     ######################################################################
-
+    
     def test_comment_show_not_authorized(self):
         self._test_not_authorized(actions.show_datarequest_comment, constants.SHOW_DATAREQUEST_COMMENT, test_data.comment_show_request_data)
 
@@ -931,9 +929,9 @@ class ActionsTest(unittest.TestCase):
         self.context['session'].commit.assert_called_once()
 
         # Check the object stored in the database
-        self.assertEquals(previous_user_id, comment.user_id)
-        self.assertEquals(test_data.comment_update_request_data['datarequest_id'], comment.datarequest_id)
-        self.assertEquals(test_data.comment_update_request_data['comment'], comment.comment)
+        assert previous_user_id == comment.user_id
+        assert test_data.comment_update_request_data['datarequest_id'] == comment.datarequest_id
+        assert test_data.comment_update_request_data['comment'] == comment.comment
 
         # Check the result
         self._check_comment(comment, result, default_user)
@@ -990,7 +988,8 @@ class ActionsTest(unittest.TestCase):
         follower = MagicMock()
         actions.db.DataRequestFollower.get.return_value = [follower]
 
-        with self.assertRaises(self._tk.ValidationError):
+        #with self.assertRaises(self._tk.ValidationError):
+        with pytest.raises(self._tk.ValidationError):
             actions.follow_datarequest(self.context, test_data.follow_data_request_data)
 
         # Assertions
@@ -1017,11 +1016,11 @@ class ActionsTest(unittest.TestCase):
         self.context['session'].commit.assert_called_once()
 
         # Check the object stored in the database
-        self.assertEquals(self.context['auth_user_obj'].id, follower.user_id)
-        self.assertEquals(test_data.comment_request_data['datarequest_id'], follower.datarequest_id)
-        self.assertEquals(current_time, follower.time)
+        assert self.context['auth_user_obj'].id == follower.user_id
+        assert test_data.comment_request_data['datarequest_id'] == follower.datarequest_id
+        assert current_time ==  follower.time
 
-        self.assertTrue(result)
+        assert result
 
     ######################################################################
     ######################## UNFOLLOW DATAREQUEST ########################
@@ -1037,7 +1036,8 @@ class ActionsTest(unittest.TestCase):
         # Configure the mock
         actions.db.DataRequestFollower.get.return_value = []
 
-        with self.assertRaises(self._tk.ObjectNotFound):
+        #with self.assertRaises(self._tk.ObjectNotFound):
+        with pytest.raises(self._tk.ObjectNotFound):
             actions.unfollow_datarequest(self.context, test_data.follow_data_request_data)
 
         # Assertions
@@ -1059,5 +1059,5 @@ class ActionsTest(unittest.TestCase):
         self.context['session'].delete.assert_called_once_with(follower)
         self.context['session'].commit.assert_called_once()
 
-        self.assertTrue(result)
+        assert result
 

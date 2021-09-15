@@ -1,0 +1,4 @@
+edit_comment:
+  output: datarequests/%(version)s_edit_comment.js 
+  contents: 
+    - js/edit_comment.js

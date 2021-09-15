@@ -22,7 +22,8 @@ import ckanext.datarequests.constants as constants
 import unittest
 
 from mock import MagicMock, patch
-from nose_parameterized import parameterized
+from parameterized import parameterized
+import pytest
 
 TOTAL_ACTIONS = 13
 COMMENTS_ACTIONS = 5
@@ -77,15 +78,15 @@ class DataRequestPluginTest(unittest.TestCase):
 
     def test_is_fontawesome_4_false_ckan_version_does_not_exist(self):
         delattr(self.h_mock, 'ckan_version')
-        self.assertFalse(plugin.is_fontawesome_4())
+        assert not plugin.is_fontawesome_4()
 
     def test_is_fontawesome_4_false_old_ckan_version(self):
         self.h_mock.ckan_version.return_value = '2.6.0'
-        self.assertFalse(plugin.is_fontawesome_4())
+        assert not plugin.is_fontawesome_4()
 
     def test_is_fontawesome_4_true_new_ckan_version(self):
         self.h_mock.ckan_version.return_value = '2.7.0'
-        self.assertTrue(plugin.is_fontawesome_4())
+        assert plugin.is_fontawesome_4()
 
     def test_get_plus_icon_new(self):
 
@@ -93,7 +94,7 @@ class DataRequestPluginTest(unittest.TestCase):
         is_fontawesome_4_patch.start()
         self.addCleanup(is_fontawesome_4_patch.stop)
 
-        self.assertEquals('plus-square', plugin.get_plus_icon())
+        assert 'plus-square' == plugin.get_plus_icon()
 
     def test_get_plus_icon_old(self):
 
@@ -101,7 +102,7 @@ class DataRequestPluginTest(unittest.TestCase):
         is_fontawesome_4_patch.start()
         self.addCleanup(is_fontawesome_4_patch.stop)
 
-        self.assertEquals('plus-sign-alt', plugin.get_plus_icon())
+        assert 'plus-sign-alt' == plugin.get_plus_icon()
 
     def test_get_question_icon_new(self):
 
@@ -109,7 +110,7 @@ class DataRequestPluginTest(unittest.TestCase):
         is_fontawesome_4_patch.start()
         self.addCleanup(is_fontawesome_4_patch.stop)
 
-        self.assertEquals('question-circle', plugin.get_question_icon())
+        assert 'question-circle' == plugin.get_question_icon()
 
     def test_get_question_icon_old(self):
 
@@ -117,7 +118,7 @@ class DataRequestPluginTest(unittest.TestCase):
         is_fontawesome_4_patch.start()
         self.addCleanup(is_fontawesome_4_patch.stop)
 
-        self.assertEquals('question-sign', plugin.get_question_icon())
+        assert 'question-sign' == plugin.get_question_icon()
 
     @parameterized.expand([
         ('True',),
@@ -130,25 +131,25 @@ class DataRequestPluginTest(unittest.TestCase):
         # Configure config and create instance
         plugin.config.get.return_value = comments_enabled
         self.plg_instance = plugin.DataRequestsPlugin()
-
+        
         # Get actions
         actions = self.plg_instance.get_actions()
 
-        self.assertEquals(actions_len, len(actions))
-        self.assertEquals(plugin.actions.create_datarequest, actions[self.create_datarequest])
-        self.assertEquals(plugin.actions.show_datarequest, actions[self.show_datarequest])
-        self.assertEquals(plugin.actions.update_datarequest, actions[self.update_datarequest])
-        self.assertEquals(plugin.actions.list_datarequests, actions[self.list_datarequests])
-        self.assertEquals(plugin.actions.delete_datarequest, actions[self.delete_datarequest])
-        self.assertEquals(plugin.actions.follow_datarequest, actions[self.follow_datarequest])
-        self.assertEquals(plugin.actions.unfollow_datarequest, actions[self.unfollow_datarequest])
+        assert actions_len == len(actions)
+        assert plugin.actions.create_datarequest == actions[self.create_datarequest]
+        assert plugin.actions.show_datarequest == actions[self.show_datarequest]
+        assert plugin.actions.update_datarequest == actions[self.update_datarequest]
+        assert plugin.actions.list_datarequests == actions[self.list_datarequests]
+        assert plugin.actions.delete_datarequest == actions[self.delete_datarequest]
+        assert plugin.actions.follow_datarequest == actions[self.follow_datarequest]
+        assert plugin.actions.unfollow_datarequest == actions[self.unfollow_datarequest]
 
         if comments_enabled == 'True':
-            self.assertEquals(plugin.actions.comment_datarequest, actions[self.comment_datarequest])
-            self.assertEquals(plugin.actions.list_datarequest_comments, actions[self.list_datarequest_comments])
-            self.assertEquals(plugin.actions.show_datarequest_comment, actions[self.show_datarequest_comment])
-            self.assertEquals(plugin.actions.update_datarequest_comment, actions[self.update_datarequest_comment])
-            self.assertEquals(plugin.actions.delete_datarequest_comment, actions[self.delete_datarequest_comment])
+            assert plugin.actions.comment_datarequest == actions[self.comment_datarequest]
+            assert plugin.actions.list_datarequest_comments == actions[self.list_datarequest_comments]
+            assert plugin.actions.show_datarequest_comment == actions[self.show_datarequest_comment]
+            assert plugin.actions.update_datarequest_comment == actions[self.update_datarequest_comment]
+            assert plugin.actions.delete_datarequest_comment == actions[self.delete_datarequest_comment]
 
     @parameterized.expand([
         ('True',),
@@ -165,21 +166,21 @@ class DataRequestPluginTest(unittest.TestCase):
         # Get auth functions
         auth_functions = self.plg_instance.get_auth_functions()
 
-        self.assertEquals(auth_functions_len, len(auth_functions))
-        self.assertEquals(plugin.auth.create_datarequest, auth_functions[self.create_datarequest])
-        self.assertEquals(plugin.auth.show_datarequest, auth_functions[self.show_datarequest])
-        self.assertEquals(plugin.auth.update_datarequest, auth_functions[self.update_datarequest])
-        self.assertEquals(plugin.auth.list_datarequests, auth_functions[self.list_datarequests])
-        self.assertEquals(plugin.auth.delete_datarequest, auth_functions[self.delete_datarequest])
-        self.assertEquals(plugin.auth.follow_datarequest, auth_functions[self.follow_datarequest])
-        self.assertEquals(plugin.auth.unfollow_datarequest, auth_functions[self.unfollow_datarequest])
+        assert auth_functions_len == len(auth_functions)
+        assert plugin.auth.create_datarequest == auth_functions[self.create_datarequest]
+        assert plugin.auth.show_datarequest == auth_functions[self.show_datarequest]
+        assert plugin.auth.update_datarequest == auth_functions[self.update_datarequest]
+        assert plugin.auth.list_datarequests == auth_functions[self.list_datarequests]
+        assert plugin.auth.delete_datarequest == auth_functions[self.delete_datarequest]
+        assert plugin.auth.follow_datarequest == auth_functions[self.follow_datarequest]
+        assert plugin.auth.unfollow_datarequest == auth_functions[self.unfollow_datarequest]
 
         if comments_enabled == 'True':
-            self.assertEquals(plugin.auth.comment_datarequest, auth_functions[self.comment_datarequest])
-            self.assertEquals(plugin.auth.list_datarequest_comments, auth_functions[self.list_datarequest_comments])
-            self.assertEquals(plugin.auth.show_datarequest_comment, auth_functions[self.show_datarequest_comment])
-            self.assertEquals(plugin.auth.update_datarequest_comment, auth_functions[self.update_datarequest_comment])
-            self.assertEquals(plugin.auth.delete_datarequest_comment, auth_functions[self.delete_datarequest_comment])
+            assert plugin.auth.comment_datarequest == auth_functions[self.comment_datarequest]
+            assert plugin.auth.list_datarequest_comments == auth_functions[self.list_datarequest_comments]
+            assert plugin.auth.show_datarequest_comment == auth_functions[self.show_datarequest_comment]
+            assert plugin.auth.update_datarequest_comment == auth_functions[self.update_datarequest_comment]
+            assert plugin.auth.delete_datarequest_comment == auth_functions[self.delete_datarequest_comment]
 
     def test_update_config(self):
         # Create instance
@@ -191,96 +192,12 @@ class DataRequestPluginTest(unittest.TestCase):
         plugin.tk.add_template_directory.assert_called_once_with(config, 'templates')
 
     @parameterized.expand([
-        ('True',),
-        ('False')
-    ])
-    def test_before_map(self, comments_enabled):
-
-        urls_set = 12
-        mapa_calls = urls_set if comments_enabled == 'True' else urls_set - 2
-
-        # Configure config and get instance
-        plugin.config.get.return_value = comments_enabled
-        self.plg_instance = plugin.DataRequestsPlugin()
-
-        mock_icon = 'icon'
-        get_question_icon_patch = patch('ckanext.datarequests.plugin.get_question_icon', return_value=mock_icon)
-        get_question_icon_patch.start()
-        self.addCleanup(get_question_icon_patch.stop)
-
-        # Test
-        mapa = MagicMock()
-        dr_basic_path = 'datarequest'
-        self.plg_instance.before_map(mapa)
-
-        self.assertEquals(mapa_calls, mapa.connect.call_count)
-        mapa.connect.assert_any_call('datarequests_index', "/%s" % dr_basic_path,
-            controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI',
-            action='index', conditions=dict(method=['GET']))
-
-        mapa.connect.assert_any_call('/%s/new' % dr_basic_path,
-            controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI',
-            action='new', conditions=dict(method=['GET', 'POST']))
-
-        mapa.connect.assert_any_call('show_datarequest', '/%s/{id}' % dr_basic_path,
-            controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI',
-            action='show', conditions=dict(method=['GET']), ckan_icon=mock_icon)
-
-        mapa.connect.assert_any_call('/%s/edit/{id}' % dr_basic_path,
-            controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI',
-            action='update', conditions=dict(method=['GET', 'POST']))
-
-        mapa.connect.assert_any_call('/%s/delete/{id}' % dr_basic_path,
-            controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI',
-            action='delete', conditions=dict(method=['POST']))
-
-        mapa.connect.assert_any_call('/%s/close/{id}' % dr_basic_path,
-            controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI',
-            action='close', conditions=dict(method=['GET', 'POST']))
-
-        mapa.connect.assert_any_call('organization_datarequests', 
-            '/organization/%s/{id}' % dr_basic_path,
-            controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI',
-            action='organization_datarequests', conditions=dict(method=['GET']), 
-            ckan_icon=mock_icon)
-
-        mapa.connect.assert_any_call('user_datarequests',
-            '/user/%s/{id}' % dr_basic_path,
-            controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI',
-            action='user_datarequests', conditions=dict(method=['GET']), 
-            ckan_icon=mock_icon)
-
-        mapa.connect.assert_any_call('user_datarequests',
-            '/user/%s/{id}' % dr_basic_path,
-            controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI',
-            action='user_datarequests', conditions=dict(method=['GET']), 
-            ckan_icon=mock_icon)
-
-        mapa.connect('/%s/follow/{id}' % dr_basic_path,
-            controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI',
-            action='follow', conditions=dict(method=['POST']))
-
-        mapa.connect('/%s/unfollow/{id}' % dr_basic_path,
-            controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI',
-            action='unfollow', conditions=dict(method=['POST']))
-
-        if comments_enabled == 'True':
-            mapa.connect.assert_any_call('comment_datarequest', '/%s/comment/{id}' % dr_basic_path,
-                controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI',
-                action='comment', conditions=dict(method=['GET', 'POST']), ckan_icon='comment')
-
-            mapa.connect.assert_any_call('/%s/comment/{datarequest_id}/delete/{comment_id}' % dr_basic_path,
-                controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI',
-                action='delete_comment', conditions=dict(method=['GET', 'POST']))
-
-    @parameterized.expand([
         ('True',  'True'),
         ('True',  'False'),
         ('False', 'True'),
         ('False', 'False')
     ])
     def test_helpers(self, comments_enabled, show_datarequests_badge):
-
         # Configure config and get instance
         plugin.config = {
             'ckan.datarequests.comments': comments_enabled,
@@ -291,11 +208,11 @@ class DataRequestPluginTest(unittest.TestCase):
         # Check result
         show_comments_expected = True if comments_enabled == 'True' else False
         helpers = self.plg_instance.get_helpers()
-        self.assertEquals(helpers['show_comments_tab'](), show_comments_expected)
-        self.assertEquals(helpers['get_comments_number'], plugin.helpers.get_comments_number)
-        self.assertEquals(helpers['get_comments_badge'], plugin.helpers.get_comments_badge)
-        self.assertEquals(helpers['get_open_datarequests_number'], plugin.helpers.get_open_datarequests_number)
-        self.assertEquals(helpers['get_open_datarequests_badge'], plugin.partial.return_value)
+        assert helpers['show_comments_tab']() ==  show_comments_expected
+        assert helpers['get_comments_number'] == plugin.helpers.get_comments_number
+        assert helpers['get_comments_badge'] == plugin.helpers.get_comments_badge
+        assert helpers['get_open_datarequests_number'] == plugin.helpers.get_open_datarequests_number
+        assert helpers['get_open_datarequests_badge'] == plugin.partial.return_value
 
         # Check that partial has been called
         show_datarequests_expected = True if show_datarequests_badge == 'True' else False

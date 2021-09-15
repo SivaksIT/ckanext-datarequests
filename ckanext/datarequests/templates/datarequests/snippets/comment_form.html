@@ -1,6 +1,7 @@
 {% import 'macros/form.html' as form %}
-{% resource "datarequest/edit_comment.js" %}
+{% asset "datarequest/js/edit_comment" %}
 
+<a name="form"></a>
 <form class="dataset-form {{ 'comment-edit-form' if comment_id else 'comment-wrapper' }} {{ 'hide' if comment_id and not (focus and errors) }} form-horizontal" id="comment-form{{ '-' + comment_id if comment_id }}" method="post" data-module="basic-form" action enctype="multipart/form-data">
 
   {% if not comment_id %}

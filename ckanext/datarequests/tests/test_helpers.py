@@ -56,7 +56,7 @@ class HelpersTest(unittest.TestCase):
         # Assertions
         helpers.db.init_db.assert_called_once_with(helpers.model)
         helpers.db.Comment.get_comment_datarequests_number.assert_called_once_with(datarequest_id=datarequest_id)
-        self.assertEquals(result, n_comments)
+        assert result == n_comments
 
     def test_get_comments_badge(self):
         # Mocking
@@ -70,7 +70,7 @@ class HelpersTest(unittest.TestCase):
         # Assertions
         helpers.db.init_db.assert_called_once_with(helpers.model)
         helpers.db.Comment.get_comment_datarequests_number.assert_called_once_with(datarequest_id=datarequest_id)
-        self.assertEquals(result, helpers.tk.render_snippet.return_value)
+        assert result == helpers.tk.render_snippet.return_value
         helpers.tk.render_snippet.assert_called_once_with('datarequests/snippets/badge.html',
                                                           {'comments_count': n_comments})
 
@@ -85,7 +85,7 @@ class HelpersTest(unittest.TestCase):
         # Assertions
         helpers.db.init_db.assert_called_once_with(helpers.model)
         helpers.db.DataRequest.get_open_datarequests_number.assert_called_once_with()
-        self.assertEquals(result, n_datarequests)
+        assert result == n_datarequests
 
     def test_get_open_datarequests_badge_true(self):
         # Mocking
@@ -98,19 +98,19 @@ class HelpersTest(unittest.TestCase):
         # Assertions
         helpers.db.init_db.assert_called_once_with(helpers.model)
         helpers.db.DataRequest.get_open_datarequests_number.assert_called_once_with()
-        self.assertEquals(result, helpers.tk.render_snippet.return_value)
+        assert result == helpers.tk.render_snippet.return_value
         helpers.tk.render_snippet.assert_called_once_with('datarequests/snippets/badge.html',
                                                           {'comments_count': n_datarequests})
 
     def test_get_open_datarequests_badge_false(self):
-        self.assertEquals(helpers.get_open_datarequests_badge(False), '')
+        assert helpers.get_open_datarequests_badge(False) == ''
 
     def test_is_following_datarequest_true(self):
         follower = MagicMock()
         datarequest_id = 'example_id'
         helpers.db.DataRequestFollower.get.return_value = [follower]
 
-        self.assertTrue(helpers.is_following_datarequest(datarequest_id))
+        assert helpers.is_following_datarequest(datarequest_id)
 
         helpers.db.DataRequestFollower.get.assert_called_once_with(datarequest_id=datarequest_id, user_id=self.c.userobj.id)
 
@@ -118,6 +118,6 @@ class HelpersTest(unittest.TestCase):
         datarequest_id = 'example_id'
         helpers.db.DataRequestFollower.get.return_value = []
 
-        self.assertFalse(helpers.is_following_datarequest(datarequest_id))
+        assert not helpers.is_following_datarequest(datarequest_id)
 
         helpers.db.DataRequestFollower.get.assert_called_once_with(datarequest_id=datarequest_id, user_id=self.c.userobj.id)

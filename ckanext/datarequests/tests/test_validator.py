@@ -20,9 +20,10 @@
 import ckanext.datarequests.validator as validator
 import unittest
 import random
+import pytest
 
 from mock import MagicMock
-from nose_parameterized import parameterized
+from parameterized import parameterized
 
 
 def generate_string(length):
@@ -59,13 +60,13 @@ class ValidatorTest(unittest.TestCase):
     ])
     def test_validate_valid_data_request(self, avoid_existing_title_check):
         context = {'avoid_existing_title_check': avoid_existing_title_check}
-        self.assertIsNone(validator.validate_datarequest(context, self.request_data))
+        assert validator.validate_datarequest(context, self.request_data) is None
         validator.tk.get_validator.assert_called_once_with('group_id_exists')
         group_validator = validator.tk.get_validator.return_value
         group_validator.assert_called_once_with(self.request_data['organization_id'], context)
 
         if avoid_existing_title_check:
-            self.assertEquals(0, validator.db.DataRequest.datarequest_exists.call_count)
+            assert 0 == validator.db.DataRequest.datarequest_exists.call_count
         else:
             validator.db.DataRequest.datarequest_exists.assert_called_once_with(self.request_data['title'])
 
@@ -84,28 +85,26 @@ class ValidatorTest(unittest.TestCase):
         self.request_data[field.lower()] = value
         validator.db.DataRequest.datarequest_exists.return_value = title_exists
 
-        with self.assertRaises(self._tk.ValidationError) as c:
+        with pytest.raises(self._tk.ValidationError) as c:
             validator.validate_datarequest(context, self.request_data)
 
-        self.assertEquals({field: [excepction_msg]},
-                          c.exception.error_dict)
+        assert {field: [excepction_msg]} == c.exception.error_dict
 
     def test_invalid_org(self):
         context = {}
         org_validator = validator.tk.get_validator.return_value
         org_validator.side_effect = self._tk.ValidationError({'Organization': 'Invalid ORG'})
 
-        with self.assertRaises(self._tk.ValidationError) as c:
+        with pytest.raises(self._tk.ValidationError) as c:
             validator.validate_datarequest(context, self.request_data)
 
-        self.assertEquals({'Organization': ['Organization is not valid']},
-                          c.exception.error_dict)
+        assert ({'Organization': ['Organization is not valid']} == c.exception.error_dict)
 
     def test_missing_org(self):
         self.request_data['organization_id'] = ''
         context = MagicMock()
-        self.assertIsNone(validator.validate_datarequest(context, self.request_data))
-        self.assertEquals(0, validator.tk.get_validator.call_count)
+        assert validator.validate_datarequest(context, self.request_data) is None
+        assert 0 == validator.tk.get_validator.call_count
 
     def test_close_invalid_accepted_dataset(self):
         context = {}
@@ -114,7 +113,7 @@ class ValidatorTest(unittest.TestCase):
         package_validator.side_effect = self._tk.ValidationError({'Dataset': 'Invalid Dataset'})
 
         # Call the function (exception expected)
-        with self.assertRaises(self._tk.ValidationError) as c:
+        with pytest.raises(self._tk.ValidationError) as c:
             validator.validate_datarequest_closing(context, {'id': 'dr_id', 'accepted_dataset_id': accepted_ds_id})
 
         # Check that the correct validator is called
@@ -122,8 +121,7 @@ class ValidatorTest(unittest.TestCase):
 
         # Check that the validator has been properly called
         package_validator.assert_called_once_with(accepted_ds_id, context)
-        self.assertEquals({'Accepted Dataset': ['Dataset not found']},
-                          c.exception.error_dict)
+        assert {'Accepted Dataset': ['Dataset not found']} == c.exception.error_dict25.
 
     def test_close_valid(self):
         context = {}
@@ -150,10 +148,10 @@ class ValidatorTest(unittest.TestCase):
         request_data['datarequest_id'] = 'exmaple'
 
         # Call the function
-        with self.assertRaises(self._tk.ValidationError) as c:
+        with pytest.raises(self._tk.ValidationError) as c:
             validator.validate_comment(context, request_data)
 
-        self.assertEquals({field: [message]}, c.exception.error_dict)
+        assert {field: [message]} == c.exception.error_dict
 
     def test_comment_invalid_datarequest(self):
         show_datarequest = validator.tk.get_action.return_value
@@ -171,4 +169,4 @@ class ValidatorTest(unittest.TestCase):
 
         result = validator.validate_comment({}, request_data)
 
-        self.assertEquals(result, show_datarequest.return_value)
+        assert result == show_datarequest.return_value

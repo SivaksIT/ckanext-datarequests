@@ -21,15 +21,16 @@
 import ckan.lib.base as base
 import ckan.model as model
 import ckan.plugins as plugins
-import constants
+from . import constants
 import datetime
-import cgi
-import db
+import html
+from . import db
 import logging
-import validator
+from . import validator
 import ckan.lib.mailer as mailer
 
-from pylons import config
+#from pylons import config
+from ckan.common import config
 
 c = plugins.toolkit.c
 log = logging.getLogger(__name__)
@@ -66,6 +67,19 @@ def _get_package(package_id):
     except Exception as e:
         log.warn(e)
 
+def _get_visibility_from_name(visibility):
+    try:
+        return constants.DataRequestState[visibility]
+    except ValueError as e:
+        log.warn(e)
+        return constants.DataRequestState.hidden
+
+def _get_visibility_from_code(visibility_code):
+    try:
+        return constants.DataRequestState(visibility_code)
+    except ValueError as e:
+        log.warn(e)
+        return constants.DataRequestState.hidden
 
 def _dictize_datarequest(datarequest):
     # Transform time
@@ -124,7 +138,7 @@ def _dictize_comment(comment):
 
 
 def _undictize_comment_basic(comment, data_dict):
-    comment.comment = cgi.escape(data_dict.get('comment', ''))
+    comment.comment = html.escape(data_dict.get('comment', ''))
     comment.datarequest_id = data_dict.get('datarequest_id', '')
 
 
