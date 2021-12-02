@@ -1,31 +1,14 @@
-# -*- coding: utf-8 -*-
-
-# Copyright (c) 2015-2016 CoNWeT Lab., Universidad Politécnica de Madrid
-
-# This file is part of CKAN Data Requests Extension.
-
-# CKAN Data Requests Extension is free software: you can redistribute it and/or
-# modify it under the terms of the GNU Affero General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-
-# CKAN Data Requests Extension is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-
-# You should have received a copy of the GNU Affero General Public License
-# along with CKAN Data Requests Extension. If not, see <http://www.gnu.org/licenses/>.
+import pytest
+import datetime
+import unittest
 
 import ckanext.datarequests.actions as actions
 import ckanext.datarequests.constants as constants
-import datetime
-import test_actions_data as test_data
-import unittest
+import ckanext.datarequests.tests.test_actions_data as test_data
 
 from mock import MagicMock, patch
-import pytest
-from parameterized import parameterized, parameterized_class
+from parameterized import parameterized
+
 class ActionsTest(unittest.TestCase):
 
     def setUp(self):
@@ -108,7 +91,7 @@ class ActionsTest(unittest.TestCase):
         # Assertions
         actions.db.init_db.assert_called_once_with(self.context['model'])
         actions.tk.check_access.assert_called_once_with(action, self.context, request_data)
-        self.assertEquals(0, actions.db.DataRequest.get.call_count)
+        assert 0 == actions.db.DataRequest.get.call_count
 
     def _test_not_found(self, function, action, request_data):
         # Configure the mock
@@ -224,7 +207,7 @@ class ActionsTest(unittest.TestCase):
 
         result = actions._get_datarequest_involved_users(self.context, datarequest)
 
-        self.assertEquals(set(['user-1', 'user-2', 'user-3', 'user-4']), result)
+        assert set(['user-1', 'user-2', 'user-3', 'user-4']) == result
 
         actions.db.DataRequestFollower.get.assert_called_once_with(datarequest_id=datarequest_id)
         list_comments_mock.assert_called_once_with({'ignore_auth': True, 'model': self.context['model']}, {'datarequest_id': datarequest_id})

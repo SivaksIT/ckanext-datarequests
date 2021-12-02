@@ -17,6 +17,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with CKAN Data Requests Extension. If not, see <http://www.gnu.org/licenses/>.
 
+from attr import field
 import ckanext.datarequests.validator as validator
 import unittest
 import random
@@ -88,7 +89,7 @@ class ValidatorTest(unittest.TestCase):
         with pytest.raises(self._tk.ValidationError) as c:
             validator.validate_datarequest(context, self.request_data)
 
-        assert {field: [excepction_msg]} == c.exception.error_dict
+        assert {field: [excepction_msg]} == vars(c.value)['error_dict']
 
     def test_invalid_org(self):
         context = {}
@@ -98,7 +99,7 @@ class ValidatorTest(unittest.TestCase):
         with pytest.raises(self._tk.ValidationError) as c:
             validator.validate_datarequest(context, self.request_data)
 
-        assert ({'Organization': ['Organization is not valid']} == c.exception.error_dict)
+        assert {'Organization': ['Organization is not valid']} == vars(c.value)['error_dict']
 
     def test_missing_org(self):
         self.request_data['organization_id'] = ''
@@ -121,7 +122,7 @@ class ValidatorTest(unittest.TestCase):
 
         # Check that the validator has been properly called
         package_validator.assert_called_once_with(accepted_ds_id, context)
-        assert {'Accepted Dataset': ['Dataset not found']} == c.exception.error_dict25.
+        assert {'Accepted Dataset': ['Dataset not found']} == vars(c.value)['error_dict']
 
     def test_close_valid(self):
         context = {}
@@ -146,19 +147,30 @@ class ValidatorTest(unittest.TestCase):
     def test_comment_invalid(self, request_data, field, message):
         context = {}
         request_data['datarequest_id'] = 'exmaple'
+        print(request_data)
+        # Call the function
+        with pytest.raises(self._tk.ValidationError) as c:
+            validator.validate_comment(context, request_data)
+
+        assert {field: [message]} == vars(c.value)['error_dict']
+
+
+    def test_comment_invalid_datarequest(self):
+        context = {}
+        
+        show_datarequest = validator.tk.get_action.return_value
+        show_datarequest.side_effect = self._tk.ObjectNotFound('Store Not found')
+
+        request_data = {'datarequest_id': 'non_existing_dr'}
+        field = 'Data Request'
+        message = 'Data Request not found'
 
         # Call the function
         with pytest.raises(self._tk.ValidationError) as c:
             validator.validate_comment(context, request_data)
 
-        assert {field: [message]} == c.exception.error_dict
+        assert {field: [message]} == vars(c.value)['error_dict']
 
-    def test_comment_invalid_datarequest(self):
-        show_datarequest = validator.tk.get_action.return_value
-        show_datarequest.side_effect = self._tk.ObjectNotFound('Store Not found')
-
-        self.test_comment_invalid({'datarequest_id': 'non_existing_dr'}, 'Data Request',
-                                  'Data Request not found')
 
     def test_comment_valid(self):
         show_datarequest = validator.tk.get_action.return_value

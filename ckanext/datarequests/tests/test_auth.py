@@ -24,7 +24,7 @@ import unittest
 
 from mock import MagicMock
 from parameterized import parameterized
-import pytest
+
 
 # Needed for the test
 context = {
@@ -61,7 +61,7 @@ class AuthTest(unittest.TestCase):
 
     @parameterized.expand([
         # Data Requests
-        (create_datarequest, None,    None),
+        (auth.create_datarequest, None,    None),
         (auth.create_datarequest, context, None),
         (auth.create_datarequest, None,    request_data_dr),
         (auth.create_datarequest, context, request_data_dr),
