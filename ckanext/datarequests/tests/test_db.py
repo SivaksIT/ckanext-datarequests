@@ -21,7 +21,7 @@ import unittest
 import ckanext.datarequests.db as db
 
 from mock import MagicMock
-from nose_parameterized import parameterized
+from parameterized import parameterized
 
 
 class DBTest(unittest.TestCase):
@@ -83,7 +83,7 @@ class DBTest(unittest.TestCase):
         result = getattr(db, table).get(**params)
 
         # Assertions
-        self.assertEquals(db_response, result)
+        assert db_response == result
         final_query.filter_by.assert_called_once_with(**params)
 
     def _test_get_ordered_by_date(self, table, time_column, params):
@@ -134,7 +134,7 @@ class DBTest(unittest.TestCase):
         desc = True if 'desc' in params and params['desc'] is True else False
 
         # Assertions
-        self.assertEquals(db_response, result)
+        assert db_response == result 
         order = time_column_value.desc() if desc else time_column_value.asc()
         no_ordered.order_by.assert_called_once_with(order)
         final_query.filter_by.assert_called_once_with(**expected_filter_by_params)
@@ -161,7 +161,7 @@ class DBTest(unittest.TestCase):
         db.init_db(model)
 
         # Assert that table method has been called
-        self.assertEquals(3, db.sa.Table.call_count)
+        assert 3 == db.sa.Table.call_count
         model.meta.mapper.assert_any_call(db.DataRequest, table_data_request)
         model.meta.mapper.assert_any_call(db.Comment, table_comment)
         model.meta.mapper.assert_any_call(db.DataRequestFollower, table_datarequest_follower)
@@ -176,8 +176,8 @@ class DBTest(unittest.TestCase):
         db.init_db(model)
 
         # Assert that table method has been called
-        self.assertEquals(0, db.sa.Table.call_count)
-        self.assertEquals(0, model.meta.mapper.call_count)
+        assert 0 == db.sa.Table.call_count
+        assert 0 == model.meta.mapper.call_count
 
     def test_datarequest_get(self):
         self._test_get('DataRequest')
@@ -223,7 +223,7 @@ class DBTest(unittest.TestCase):
         result = db.DataRequest.datarequest_exists(title)
 
         # Assertion
-        self.assertEquals(expected_result, result)
+        assert expected_result == result
         db.func.lower.assert_any_call(db.DataRequest.title)
         db.func.lower.assert_any_call(title)
         # If expected_result == true is because lower is supossed
@@ -269,7 +269,7 @@ class DBTest(unittest.TestCase):
         result = db.DataRequest.get_open_datarequests_number()
 
         # Assertions
-        self.assertEquals(n_datarequests, result)
+        assert n_datarequests == result
         query.filter_by.assert_called_once_with(closed=False)
         model.Session.query.assert_called_once_with(count)
         db.func.count.assert_called_once_with(db.DataRequest.id)
@@ -314,7 +314,7 @@ class DBTest(unittest.TestCase):
         result = db.Comment.get_comment_datarequests_number(**params)
 
         # Assertions
-        self.assertEquals(n_comments, result)
+        assert n_comments == result
         query.filter_by.assert_called_once_with(**params)
         model.Session.query.assert_called_once_with(count)
         db.func.count.assert_called_once_with(db.Comment.id)
@@ -351,7 +351,7 @@ class DBTest(unittest.TestCase):
         result = db.DataRequestFollower.get_datarequest_followers_number(**params)
 
         # Assertions
-        self.assertEquals(n_followers, result)
+        assert n_followers == result
         query.filter_by.assert_called_once_with(**params)
         model.Session.query.assert_called_once_with(count)
         db.func.count.assert_called_once_with(db.DataRequestFollower.id)

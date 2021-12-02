@@ -17,13 +17,13 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with CKAN Data Requests Extension. If not, see <http://www.gnu.org/licenses/>.
 
+from . import constants
+import sqlalchemy as sa
 import uuid
 
 import sqlalchemy as sa
 from sqlalchemy import func
 from sqlalchemy.sql.expression import or_
-
-import constants
 
 DataRequest = None
 Comment = None
@@ -57,7 +57,7 @@ def init_db(model):
                 return query.filter(func.lower(cls.title) == func.lower(title)).first() is not None
 
             @classmethod
-            def get_ordered_by_date(cls, organization_id=None, user_id=None, closed=None, q=None, desc=False, visibility=None):
+            def get_ordered_by_date(cls, organization_id=None, user_id=None, closed=None, q=None, desc=False):
                 '''Personalized query'''
                 query = model.Session.query(cls).autoflush(False)
 
@@ -71,9 +71,6 @@ def init_db(model):
 
                 if closed is not None:
                     params['closed'] = closed
-
-                if visibility is not None:
-                    params['visibility'] = visibility
 
                 if q is not None:
                     search_expr = '%{0}%'.format(q)
@@ -100,12 +97,7 @@ def init_db(model):
             sa.Column('open_time', sa.types.DateTime, primary_key=False, default=None),
             sa.Column('accepted_dataset_id', sa.types.UnicodeText, primary_key=False, default=None),
             sa.Column('close_time', sa.types.DateTime, primary_key=False, default=None),
-            sa.Column('closed', sa.types.Boolean, primary_key=False, default=False),
-            sa.Column('extras', model.types.JsonDictType),
-            sa.Column('visibility',
-                      sa.types.Integer,
-                      default=constants.DataRequestState.hidden.value),
-            sa.Column('status', sa.types.Unicode(128), primary_key=False, default=u'Open')
+            sa.Column('closed', sa.types.Boolean, primary_key=False, default=False)
         )
 
         # Create the table only if it does not exist

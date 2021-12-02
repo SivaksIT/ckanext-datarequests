@@ -19,35 +19,33 @@
 
 import ckan.model as model
 import ckan.plugins.toolkit as tk
-from pylons import config
+from . import db
+import humanize
+import pytz
+from dateutil.tz import tzlocal
+from datetime import datetime, timedelta
 
-import db
-
-from ckan.common import c
-
+from ckan.plugins.toolkit import c, config
+from ckan import logic
 
 def get_comments_number(datarequest_id):
     # DB should be intialized
     db.init_db(model)
     return db.Comment.get_comment_datarequests_number(datarequest_id=datarequest_id)
 
-
 def get_comments_badge(datarequest_id):
     return tk.render_snippet('datarequests/snippets/badge.html',
                              {'comments_count': get_comments_number(datarequest_id)})
-
 
 def get_open_datarequests_number():
     # DB should be initialized
     db.init_db(model)
     return db.DataRequest.get_open_datarequests_number()
 
-
 def is_following_datarequest(datarequest_id):
     # DB should be intialized
     db.init_db(model)
     return len(db.DataRequestFollower.get(datarequest_id=datarequest_id, user_id=c.userobj.id)) > 0
-
 
 def get_open_datarequests_badge(show_badge):
     '''The snippet is only returned when show_badge == True'''
@@ -75,3 +73,30 @@ def get_datarequest_statuses():
             statuses.append(tk._(status))
 
     return [{'name': status, 'value': status} for status in statuses]
+def check_access(action, data_dict=None):
+    context = {'model': model,
+               'user': c.user or c.author,
+               'ignore_auth': config.get('ckan.datarequests.ignore_auth', False) }
+    if not data_dict:
+        data_dict = {}
+    try:
+        logic.check_access(action, context, data_dict)
+        authorized = True
+    except logic.NotAuthorized:
+        authorized = False
+ 
+    return authorized
+
+def calculate_time_passed_comment(str):
+
+    now = datetime.now()
+    new_date = str.split('T')
+    new_date = ' '.join(new_date)
+
+    date_time_obj = datetime.strptime(new_date, '%Y-%m-%d %H:%M:%S.%f')
+    when_commented_aware = pytz.utc.localize(date_time_obj)
+
+    now_aware = pytz.utc.localize(now)
+    diff = humanize.naturaltime(now_aware - when_commented_aware)
+
+    return diff

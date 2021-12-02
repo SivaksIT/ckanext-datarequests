@@ -20,7 +20,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '1.0.0'
+version = '1.1.0'
 
 setup(
     name='ckanext-datarequests',
@@ -44,7 +44,7 @@ setup(
     setup_requires=['nose>=1.3.0'],
     install_requires=[
         # -*- Extra requirements: -*-
-        'enum34',
+        'humanize'
     ],
     tests_require=[
         'nose_parameterized==0.3.3',

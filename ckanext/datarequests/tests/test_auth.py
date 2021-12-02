@@ -23,7 +23,8 @@ import ckanext.datarequests.auth as auth
 import unittest
 
 from mock import MagicMock
-from nose_parameterized import parameterized
+from parameterized import parameterized
+import pytest
 
 # Needed for the test
 context = {
@@ -60,7 +61,7 @@ class AuthTest(unittest.TestCase):
 
     @parameterized.expand([
         # Data Requests
-        (auth.create_datarequest, None,    None),
+        (create_datarequest, None,    None),
         (auth.create_datarequest, context, None),
         (auth.create_datarequest, None,    request_data_dr),
         (auth.create_datarequest, context, request_data_dr),
@@ -94,7 +95,7 @@ class AuthTest(unittest.TestCase):
         (auth.unfollow_datarequest, context, request_follow),
     ])
     def test_everyone_can_create_show_and_index(self, function, context, request_data):
-        self.assertTrue(function(context, request_data).get('success', False))
+        assert function(context, request_data).get('success', False)
 
     @parameterized.expand([
         # Data Requests
@@ -136,11 +137,11 @@ class AuthTest(unittest.TestCase):
             initial_request_data = request_data
 
         result = function(context, initial_request_data).get('success')
-        self.assertEquals(expected_result, result)
+        assert expected_result == result
 
         if action_called:
             auth.tk.get_action.assert_called_once_with(show_function)
             xyz_show = auth.tk.get_action.return_value
             xyz_show.assert_called_once_with({'ignore_auth': True}, {'id': request_data['id']})
         else:
-            self.assertEquals(0, auth.tk.get_action.call_count)
+            assert 0 == auth.tk.get_action.call_count

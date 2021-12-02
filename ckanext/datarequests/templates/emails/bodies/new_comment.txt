@@ -18,7 +18,7 @@
 
 I dashur {{ user.fullname }},
 
-
+Një përdorues ka komentuar në kërkesën e të dhënave "{{datarequest ['title']}}". Kontrolloni këtë koment të ri vetëm në rast se doni të jepni një përgjigje.
 
 Ju po merrni këto njoftime sepse:
 
@@ -36,7 +36,7 @@ Fatmirësisht,
 
 Dear {{ user.fullname }},
 
-Një përdorues ka komentuar në kërkesën e të dhënave "{{datarequest ['title']}}". Kontrolloni këtë koment të ri vetëm në rast se doni të jepni një përgjigje.
+A user has commented in the "{{ datarequest['title'] }}" data request. Check this new comment just in case you want to give it a reply.
 
 You are receiving this notifications because:
 

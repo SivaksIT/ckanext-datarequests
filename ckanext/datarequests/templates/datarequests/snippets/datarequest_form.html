@@ -4,10 +4,11 @@
 {% set description = data.get('description', '') %}
 {% set organization_id = data.get('organization_id', h.get_request_param('organization')) %}
 {% set organizations_available = h.organizations_available('read') %}
+{% set form_horizontal = 'form-horizontal' if h.ckan_version()[:3] <= '2.7' else '' %}
 
 {# This provides a full page that renders a form for publishing a dataset. It can
 then itself be extended to add/remove blocks of functionality. #}
-<form class="dataset-form form-horizontal" method="post" data-module="basic-form" action enctype="multipart/form-data">
+<form class="dataset-form {{ form_horizontal }}" method="post" data-module="basic-form" action enctype="multipart/form-data">
 
   <input type="hidden" id="id" name="id" value="{{ data.get('id', '') }}" />
 
@@ -25,7 +26,7 @@ then itself be extended to add/remove blocks of functionality. #}
   {% endblock %}
 
 {% block offering_organization %}
-  <div class="control-group">
+  <div class="control-group form-group">
     <label for="field-organizations" class="control-label">{{ _('Organization') }}</label>
     <div class="controls">
       <select id="field-organizations" name="organization_id" data-module="autocomplete">
@@ -41,18 +42,6 @@ then itself be extended to add/remove blocks of functionality. #}
   </div>
 {% endblock %}
 
-  {% if h.check_access('sysadmin') %}
-    {{ form.select('visibility', label=_('Visibility'), options=[{'text':_('hidden'), 'name': 'hidden', 'value': 'hidden'},{'text': _('visible'), 'name': 'visible', 'value': 'visible'}], selected=data.visibility, error=errors.hidden) }}
-
-    {{ form.select('status', label=_('Status'), options=h.get_datarequest_statuses(), selected=data.status, error=errors.hidden) }}
-
-  {% else %}
-    <div class="alert alert-warning">
-      {% trans %}Your data request will not be visible until a site administrator reviews it.{% endtrans %}
-    </div>
-
-  {% endif %}
-
   {% if creates_new is defined %}
     {% snippet "datarequests/snippets/datareq_captcha.html", public_key=g.recaptcha_publickey %}
   {% endif %}
@@ -62,7 +51,7 @@ then itself be extended to add/remove blocks of functionality. #}
       {% block delete_button %}
         {% if h.check_access('delete_datarequest', {'id': data.get('id', '')}) and not data.state == 'deleted' %}
           {% set locale = h.dump_json({'content': _('Are you sure you want to delete this data request?')}) %}
-          <a class="btn btn-danger pull-left" href="{% url_for controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI', action='delete', id=data.get('id') %}" data-module="confirm-action" data-module-i18n="{{ locale }}">{% block delete_button_text %}{{ _('Delete') }}{% endblock %}</a>
+          <a class="btn btn-danger pull-left" href ="{{ url_for('datarequests.delete', id = data.get('id')) }}" data-module="confirm-action" data-module-i18n="{{ locale }}">{% block delete_button_text %}{{ _('Delete') }}{% endblock %}</a>
         {% endif %}
       {% endblock %}
       <button class="btn btn-primary" type="submit" name="save">{% block save_button_text %}{{ _('Create Data Request') }}{% endblock %}</button>
