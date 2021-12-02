@@ -44,6 +44,7 @@ setup(
     setup_requires=['nose>=1.3.0'],
     install_requires=[
         # -*- Extra requirements: -*-
+        'humanize'
     ],
     tests_require=[
         'nose_parameterized==0.3.3',

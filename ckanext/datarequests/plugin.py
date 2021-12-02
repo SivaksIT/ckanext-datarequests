@@ -24,6 +24,7 @@ import ckanext.datarequests.auth as auth
 import ckanext.datarequests.actions as actions
 import ckanext.datarequests.constants as constants
 import ckanext.datarequests.helpers as helpers
+from ckanext.datarequests import cli
 import os
 import sys
 
@@ -59,6 +60,7 @@ class DataRequestsPlugin(p.SingletonPlugin):
     p.implements(p.IConfigurer)
     p.implements(p.ITemplateHelpers)
     p.implements(p.IBlueprint)
+    p.implements(p.IClick)
 
     # ITranslation only available in 2.5+
     try:
@@ -197,3 +199,10 @@ class DataRequestsPlugin(p.SingletonPlugin):
     ######################################################################
     def get_blueprint(self):
         return datarequests
+
+    ######################################################################
+    ################################ ICLICK ##############################
+    ######################################################################
+
+    def get_commands(self):      
+        return cli.get_commands()
