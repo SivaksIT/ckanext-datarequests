@@ -29,7 +29,7 @@ import ckan.plugins as plugins
 import ckan.lib.helpers as helpers
 from ckan.common import g, c, config, request, _
 
-import ckanext.datarequests.plugin as plugin
+from ckanext.datarequests import plugin
 import ckanext.datarequests.constants as constants
 
 from urllib.parse import urlencode
