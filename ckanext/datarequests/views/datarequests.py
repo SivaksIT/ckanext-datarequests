@@ -15,6 +15,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
 import logging
+import json
+from urllib.parse import urlencode
+from urllib.request import urlopen
 
 from flask import Blueprint, session, url_for, redirect
 import ckan.authz as authz
@@ -29,7 +32,7 @@ import re
 from ckan.common import g, config, request, _
 import ckanext.datarequests.plugin as plugin
 
-from urllib.parse import urlencode
+
 
 link = re.compile(r'(?:(https?://)|(www\.))(\S+\b/?)([!"#$%&\'()*+,\-./:;<=>?@[\\\]^_`{|}~]*)(\s|$)', re.I)
 
@@ -53,12 +56,11 @@ def _check_recaptcha(remote_ip, recaptcha_response):
     # recaptcha_response_field will be unicode if there are foreign chars in
     # the user input. So we need to encode it as utf8 before urlencoding or
     # we get an exception (#1431).
-    params = urllib.urlencode(dict(secret=recaptcha_private_key,
+    params = urlencode(dict(secret=recaptcha_private_key,
                                    remoteip=remote_ip,
                                    response=recaptcha_response))
-    f = urllib2.urlopen(recaptcha_server_name, params)
-    data = json.load(f)
-    f.close()
+    with urlopen(recaptcha_server_name, params) as f:
+        data = json.load(f)
 
     try:
         if not data['success']:
