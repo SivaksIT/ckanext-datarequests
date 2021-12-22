@@ -240,32 +240,30 @@ def index():
 
 def _process_post(action, context):
     # If the user has submitted the form, the data request must be created
-    if request.method == u'POST':
-        data_dict = {}
-        data_dict['title'] = request.form.get('title', '')
-        data_dict['description'] = request.form.get('description', '')
-        data_dict['organization_id'] = request.form.get('organization_id', '')
+    data_dict = {}
+    data_dict['title'] = request.form.get('title', '')
+    data_dict['description'] = request.form.get('description', '')
+    data_dict['organization_id'] = request.form.get('organization_id', '')
 
-        if action == constants.UPDATE_DATAREQUEST:
-            data_dict['id'] = request.form.get('id', '')
+    if action == constants.UPDATE_DATAREQUEST:
+        data_dict['id'] = request.form.get('id', '')
 
-        try:
-            result = tk.get_action(action)(context, data_dict)
-            return redirect(url_for('.show',id=result['id']))
-            #return redirect(url_for('.index'))
+    try:
+        result = tk.get_action(action)(context, data_dict)
+        return toolkit.redirect_to('.show',id=result['id'])
 
-
-        except tk.ValidationError as e:
-            log.warn(e)
-            # Fill the fields that will display some information in the page
-            c.datarequest = {
-                'id': data_dict.get('id', ''),
-                'title': data_dict.get('title', ''),
-                'description': data_dict.get('description', ''),
-                'organization_id': data_dict.get('organization_id', '')
-            }
-            c.errors = e.error_dict
-            c.errors_summary = _get_errors_summary(c.errors)
+    except tk.ValidationError as e:
+        log.warn(e)
+        # Fill the fields that will display some information in the page
+        c.datarequest = {
+            'id': data_dict.get('id', ''),
+            'title': data_dict.get('title', ''),
+            'description': data_dict.get('description', ''),
+            'organization_id': data_dict.get('organization_id', '')
+        }
+        c.errors = e.error_dict
+        c.errors_summary = _get_errors_summary(c.errors)
+        return tk.render('datarequests/new.html')
 
 def new():
     context = _get_context()
@@ -278,9 +276,10 @@ def new():
     # Check access
     try:
         tk.check_access(constants.CREATE_DATAREQUEST, context, None)
-        _process_post(constants.CREATE_DATAREQUEST, context)
+        if request.method == u'POST':
+            return _process_post(constants.CREATE_DATAREQUEST, context)
 
-        # The form is always rendered
+        # The form is rendered on get requests
         return tk.render('datarequests/new.html')
 
     except tk.NotAuthorized as e:
@@ -318,7 +317,8 @@ def update(id):
         tk.check_access(constants.UPDATE_DATAREQUEST, context, data_dict)
         c.datarequest = tk.get_action(constants.SHOW_DATAREQUEST)(context, data_dict)
         c.original_title = c.datarequest.get('title')
-        _process_post(constants.UPDATE_DATAREQUEST, context)
+        if request.method == 'POST':
+            return _process_post(constants.UPDATE_DATAREQUEST, context)
         return tk.render('datarequests/edit.html')
     except tk.ObjectNotFound as e:
         log.warn(e)
