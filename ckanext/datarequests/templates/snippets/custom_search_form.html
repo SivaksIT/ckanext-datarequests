@@ -2,7 +2,7 @@
 
 {% block search_title %}
 
-  <h2>
+  <h1>
     {% set text_query = ungettext('{number} data request found for "{query}"', '{number} data requests found for "{query}"', count) %}
     {% set text_query_none = _('No data requests found for "{query}"') %}
     {% set text_no_query = ungettext('{number} data request found', '{number} data requests found', count) %}
@@ -21,6 +21,6 @@
         {{ text_no_query_none }}
       {%- endif -%}
     {%- endif -%}
-  </h2>
+  </h1>
 
 {% endblock %}
