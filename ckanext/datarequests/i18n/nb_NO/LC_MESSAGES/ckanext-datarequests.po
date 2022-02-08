@@ -1,0 +1,504 @@
+# Norwegian Bokmål (Norway) translations for ckanext-datarequests.
+# Copyright (C) 2016 ORGANIZATION
+# This file is distributed under the same license as the
+# ckanext-datarequests
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ckanext-datarequests 0.3.1\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2016-04-28 14:45+0200\n"
+"PO-Revision-Date: 2022-02-08 08:32+0100\n"
+"Last-Translator: \n"
+"Language-Team: nb_NO <LL@li.org>\n"
+"Language: nb_NO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Generated-By: Babel 2.7.0\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: ckanext/datarequests/actions.py:192 ckanext/datarequests/actions.py:244
+#: ckanext/datarequests/actions.py:435 ckanext/datarequests/actions.py:480
+#: ckanext/datarequests/actions.py:536 ckanext/datarequests/actions.py:624
+msgid "Data Request ID has not been included"
+msgstr "DataforespørselID ble ikke funnet"
+
+#: ckanext/datarequests/actions.py:203 ckanext/datarequests/actions.py:255
+#: ckanext/datarequests/actions.py:446 ckanext/datarequests/actions.py:491
+#, python-format
+msgid "Data Request %s not found in the data base"
+msgstr "Dataforespørsel%s ble ikke funnet i databasen"
+
+#: ckanext/datarequests/actions.py:500
+msgid "This Data Request is already closed"
+msgstr "Denne dataforespørselen er allerede lukket"
+
+#: ckanext/datarequests/actions.py:578 ckanext/datarequests/actions.py:671
+#: ckanext/datarequests/actions.py:717
+msgid "Comment ID has not been included"
+msgstr "KommentarID ble ikke funnet"
+
+#: ckanext/datarequests/actions.py:589 ckanext/datarequests/actions.py:682
+#: ckanext/datarequests/actions.py:728
+#, python-format
+msgid "Comment %s not found in the data base"
+msgstr "Dataforespørsel %s ble ikke funnet i databasen"
+
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:17
+#: ckanext/datarequests/validator.py:31 ckanext/datarequests/validator.py:34
+#: ckanext/datarequests/validator.py:41
+msgid "Title"
+msgstr "Tittel"
+
+#: ckanext/datarequests/validator.py:31
+#, python-format
+msgid "Title must be a maximum of %d characters long"
+msgstr "Tittel kan maksimalt inneholde %d tegn"
+
+#: ckanext/datarequests/validator.py:34
+msgid "Title cannot be empty"
+msgstr "Tittelen kan ikke være tom"
+
+#: ckanext/datarequests/validator.py:41
+msgid "That title is already in use"
+msgstr "Tittelen er allerede i bruk"
+
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:21
+#: ckanext/datarequests/validator.py:45
+msgid "Description"
+msgstr "Beskrivelse"
+
+#: ckanext/datarequests/validator.py:45
+#, python-format
+msgid "Description must be a maximum of %d characters long"
+msgstr "Beskrivelsen kan maksimalt inneholde %d tegn"
+
+#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:11
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:25
+#: ckanext/datarequests/validator.py:52
+msgid "Organization"
+msgstr "Organisasjon"
+
+#: ckanext/datarequests/validator.py:52
+msgid "Organization is not valid"
+msgstr "Organisasjonen er ikke gyldig"
+
+#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:24
+#: ckanext/datarequests/validator.py:65
+msgid "Accepted Dataset"
+msgstr "Akseptert datasett"
+
+#: ckanext/datarequests/validator.py:65
+msgid "Dataset not found"
+msgstr "Datasett ikke funnet"
+
+#: ckanext/datarequests/templates/datarequests/base.html:17
+#: ckanext/datarequests/templates/datarequests/show.html:25
+#: ckanext/datarequests/validator.py:75
+msgid "Data Request"
+msgstr "Dataforespørsel"
+
+#: ckanext/datarequests/validator.py:75
+msgid "Data Request not found"
+msgstr "Dataforespørsel %s ble ikke funnet"
+
+#: ckanext/datarequests/validator.py:78 ckanext/datarequests/validator.py:81
+msgid "Comment"
+msgstr "Kommentar"
+
+#: ckanext/datarequests/validator.py:78
+msgid "Comments must be a minimum of 1 character long"
+msgstr "Kommentarer må inneholde minst 1 tegn"
+
+#: ckanext/datarequests/validator.py:81
+#, python-format
+msgid "Comments must be a maximum of %d characters long"
+msgstr "Kommentarer kan maksimalt inneholde %d tegn"
+
+#: ckanext/datarequests/controllers/ui_controller.py:129
+msgid "Newest"
+msgstr "Nyeste"
+
+#: ckanext/datarequests/controllers/ui_controller.py:129
+msgid "Oldest"
+msgstr "Eldste"
+
+#: ckanext/datarequests/controllers/ui_controller.py:145
+#: ckanext/datarequests/tests/test_ui_controller.py:628
+msgid "State"
+msgstr "Status"
+
+#: ckanext/datarequests/controllers/ui_controller.py:150
+#: ckanext/datarequests/templates/header.html:6
+#: ckanext/datarequests/tests/test_ui_controller.py:630
+msgid "Organizations"
+msgstr "Organisasjoner"
+
+#: ckanext/datarequests/controllers/ui_controller.py:156
+msgid "\"page\" parameter must be an integer"
+msgstr "Parameter '{parameter_name}' må være et heltall"
+
+#: ckanext/datarequests/controllers/ui_controller.py:159
+msgid "Unauthorized to list Data Requests"
+msgstr "Mangler tilgang til å se dataforespørsel"
+
+#: ckanext/datarequests/controllers/ui_controller.py:210
+msgid "Unauthorized to create a Data Request"
+msgstr "Mangler tilgang til å opprette dataforespørsler"
+
+#: ckanext/datarequests/controllers/ui_controller.py:225
+#: ckanext/datarequests/controllers/ui_controller.py:248
+#: ckanext/datarequests/controllers/ui_controller.py:265
+#: ckanext/datarequests/controllers/ui_controller.py:334
+#: ckanext/datarequests/controllers/ui_controller.py:401
+#, python-format
+msgid "Data Request %s not found"
+msgstr "Dataforespørsel %s ble ikke funnet"
+
+#: ckanext/datarequests/controllers/ui_controller.py:228
+#, python-format
+msgid "You are not authorized to view the Data Request %s"
+msgstr "Du mangler tilgang til å se dataforespørsel %s"
+
+#: ckanext/datarequests/controllers/ui_controller.py:251
+#, python-format
+msgid "You are not authorized to update the Data Request %s"
+msgstr "Du mangler tilgang til å oppdatere dataforespørsel %s"
+
+#: ckanext/datarequests/controllers/ui_controller.py:261
+#: ckanext/datarequests/tests/test_ui_controller.py:672
+#, python-format
+msgid "Data Request %s has been deleted"
+msgstr "Dataforespørsel %s ble slettet"
+
+#: ckanext/datarequests/controllers/ui_controller.py:268
+#, python-format
+msgid "You are not authorized to delete the Data Request %s"
+msgstr "Du mangler tilgang til å slette dataforespørsel %s"
+
+#: ckanext/datarequests/controllers/ui_controller.py:316
+msgid "This data request is already closed"
+msgstr "Denne dataforespørselen er allerede lukket"
+
+#: ckanext/datarequests/controllers/ui_controller.py:337
+#, python-format
+msgid "You are not authorized to close the Data Request %s"
+msgstr "Du mangler tilgang til å lukke dataforespørselen %s"
+
+#: ckanext/datarequests/controllers/ui_controller.py:366
+msgid "Comment has been published"
+msgstr "Kommentar ble publisert"
+
+#: ckanext/datarequests/controllers/ui_controller.py:368
+msgid "Comment has been updated"
+msgstr "Kommentar ble oppdatert"
+
+#: ckanext/datarequests/controllers/ui_controller.py:374
+#, python-format
+msgid "You are not authorized to %s"
+msgstr "Du har ikke tilgang til å %s"
+
+#: ckanext/datarequests/controllers/ui_controller.py:405
+#, python-format
+msgid "You are not authorized to list the comments of the Data Request %s"
+msgstr "Du har ikke tilgang til å se kommentarene for dataforespørsel %s"
+
+#: ckanext/datarequests/controllers/ui_controller.py:414
+msgid "Comment has been deleted"
+msgstr "Kommentaren ble slettet"
+
+#: ckanext/datarequests/controllers/ui_controller.py:419
+#, python-format
+msgid "Comment %s not found"
+msgstr "Kommentar %s ble ikke funnet"
+
+#: ckanext/datarequests/controllers/ui_controller.py:422
+msgid "You are not authorized to delete this comment"
+msgstr "Du mangler tilgang til å slette denne kommentaren"
+
+#: ckanext/datarequests/templates/header.html:5
+#: ckanext/datarequests/templates/organization/read_base.html:4
+#: ckanext/datarequests/templates/user/read_base.html:4
+msgid "Datasets"
+msgstr "Datasett"
+
+#: ckanext/datarequests/templates/header.html:7
+msgid "Groups"
+msgstr "Grupper"
+
+#: ckanext/datarequests/templates/datarequests/base.html:8
+#: ckanext/datarequests/templates/datarequests/base.html:11
+#: ckanext/datarequests/templates/datarequests/close.html:6
+#: ckanext/datarequests/templates/datarequests/edit.html:6
+#: ckanext/datarequests/templates/datarequests/new.html:6
+#: ckanext/datarequests/templates/datarequests/show.html:8
+#: ckanext/datarequests/templates/header.html:8
+#: ckanext/datarequests/templates/organization/read_base.html:6
+#: ckanext/datarequests/templates/user/read_base.html:6
+msgid "Data Requests"
+msgstr "Dataforespørsler"
+
+#: ckanext/datarequests/templates/header.html:9
+#: ckanext/datarequests/templates/organization/read_base.html:7
+msgid "About"
+msgstr "Om"
+
+#: ckanext/datarequests/templates/datarequests/base.html:20
+msgid ""
+"Data Requests allow users to ask for data that is not published in the "
+"platform yet. If you want some specific data and you are not able to find "
+"it among all the published datasets, you can create a new data request "
+"specifying the data than you want to get."
+msgstr ""
+"Dataforespørsler lar brukere forespørre data som ikke er publisert i "
+"plattformen enda. Hvis du ønsker noen spesifikke data som ikke finnes "
+"blant de publiserte datasett, så kan du opprette en Datarequest som "
+"spesifiserer hvilke data du behøver."
+
+#: ckanext/datarequests/templates/datarequests/close.html:3
+#: ckanext/datarequests/templates/datarequests/close.html:8
+#: ckanext/datarequests/templates/datarequests/close.html:12
+#: ckanext/datarequests/templates/datarequests/snippets/close_datarequest_form.html:25
+msgid "Close Data Request"
+msgstr "Lukk dataforespørsel"
+
+#: ckanext/datarequests/templates/datarequests/comment.html:5
+#: ckanext/datarequests/templates/datarequests/show.html:28
+msgid "Comments"
+msgstr "Kommentarer"
+
+#: ckanext/datarequests/templates/datarequests/edit.html:3
+#: ckanext/datarequests/templates/datarequests/edit.html:8
+#: ckanext/datarequests/templates/datarequests/edit.html:12
+msgid "Edit Data Request"
+msgstr "Endre dataforespørsel"
+
+#: ckanext/datarequests/templates/datarequests/index.html:9
+#: ckanext/datarequests/templates/organization/datarequests.html:10
+msgid "Add Data Request"
+msgstr "Legg til dataforespørsel"
+
+#: ckanext/datarequests/templates/datarequests/index.html:12
+#: ckanext/datarequests/templates/organization/datarequests.html:13
+#: ckanext/datarequests/templates/user/datarequests.html:9
+msgid "Search Data Requests..."
+msgstr "Søk i dataforespørsler..."
+
+#: ckanext/datarequests/templates/datarequests/new.html:3
+#: ckanext/datarequests/templates/datarequests/new.html:7
+#: ckanext/datarequests/templates/datarequests/new.html:11
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:47
+#: ckanext/datarequests/templates/datarequests/snippets/new_datarequest_form.html:7
+msgid "Create Data Request"
+msgstr "Opprett dataforespørsel"
+
+#: ckanext/datarequests/templates/datarequests/new.html:16
+msgid ""
+"To create a data request, fill the form and specify a title and a "
+"description for your request. Please, be as clear as you can in order to "
+"ease the task of accomplishing your request. You can also specify an "
+"organization if your data request is closely related with it. "
+msgstr ""
+"For å opprette en dataforespørsel, fyll ut formen og velg en tittel og "
+"beskrivelse for din forespørsel. Vær tydelig for å forenkle håndteringen "
+"av din forespørsel. Du kan også velge en organisasjon som din forespørsel "
+"er relatert til"
+
+#: ckanext/datarequests/templates/datarequests/show.html:15
+msgid "Manage"
+msgstr "Håndtere"
+
+#: ckanext/datarequests/templates/datarequests/show.html:19
+msgid "Close"
+msgstr "Lukk"
+
+#: ckanext/datarequests/templates/datarequests/show.html:45
+#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:19
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_item.html:12
+msgid "Closed"
+msgstr "Lukket"
+
+#: ckanext/datarequests/templates/datarequests/show.html:50
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_item.html:16
+msgid "Open"
+msgstr "Åpen"
+
+#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:2
+msgid "Additional Info"
+msgstr "Ekstra informasjon"
+
+#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:7
+msgid "Creator"
+msgstr "Forfatter"
+
+#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:8
+#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:12
+#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:29
+msgid "None"
+msgstr "Ingen"
+
+#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:15
+msgid "Created"
+msgstr "Opprettet"
+
+#: ckanext/datarequests/templates/datarequests/snippets/additional_info.html:20
+msgid "Not closed yet"
+msgstr "Ikke lukket enda"
+
+#: ckanext/datarequests/templates/datarequests/snippets/close_datarequest_form.html:11
+msgid "Accep. Dataset"
+msgstr "Godkjent dataforespørsel"
+
+#: ckanext/datarequests/templates/datarequests/snippets/comment_form.html:22
+msgid "Add a new Comment"
+msgstr "Legg til ny kommentar"
+
+#: ckanext/datarequests/templates/datarequests/snippets/comment_form.html:23
+#, python-format
+msgid ""
+"You can use <a href=\"#markdown\" title=\"Markdown quick reference\" data-"
+"target=\"popover\" data-content=\"%(markdown_tooltip)s\" data-html=\"true"
+"\">Markdown formatting</a> here. You can refer datasets by adding their "
+"URL."
+msgstr ""
+"Du kan bruke <a href=\"#markdown\" title=\"Markdown quick reference\" "
+"data-target=\"popover\" data-content=\"%(markdown_tooltip)s\" data-html="
+"\"true\">Markdownformattering</a> her. Du kan referer til datasett ved å "
+"legge til URLen dit."
+
+#: ckanext/datarequests/templates/datarequests/snippets/comment_form.html:28
+msgid "Cancel"
+msgstr "Avbryte"
+
+#: ckanext/datarequests/templates/datarequests/snippets/comment_form.html:29
+msgid "Update Comment"
+msgstr "Oppdatere kommentar"
+
+#: ckanext/datarequests/templates/datarequests/snippets/comment_form.html:31
+msgid "Add Comment"
+msgstr "Legg til kommentar"
+
+#: ckanext/datarequests/templates/datarequests/snippets/comment_item.html:18
+msgid "Are you sure you want to delete this comment?"
+msgstr "Er du sikker på at du vil slette denne kommentaren?"
+
+#: ckanext/datarequests/templates/datarequests/snippets/comment_item.html:29
+msgid "commented"
+msgstr "kommentert"
+
+#: ckanext/datarequests/templates/datarequests/snippets/comments.html:3
+msgid "Current Discussion"
+msgstr "Denne diskusjonen"
+
+#: ckanext/datarequests/templates/datarequests/snippets/comments.html:13
+msgid "This data request has not been commented yet"
+msgstr "Denne dataforespørselen har ingen kommentarer enda"
+
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:17
+msgid "eg. Data Request Name"
+msgstr "Navn på dataforespørselen"
+
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:21
+msgid "eg. Data Request description"
+msgstr "Beskrivelse av dataforespørselen"
+
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:29
+msgid "No organization"
+msgstr "Ingen organisasjon"
+
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:43
+msgid "Are you sure you want to delete this data request?"
+msgstr "Er du sikker på at du vil slette denne dataforespørselen?"
+
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_form.html:44
+msgid "Delete"
+msgstr "Slett"
+
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_list.html:1
+msgid "No Data Requests found"
+msgstr "Ingen dataforespørsler funnet"
+
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_list.html:14
+msgid "No Data Requests found with the given criteria"
+msgstr "Ingen dataforespørsler funnet for de gitte kriterier"
+
+#: ckanext/datarequests/templates/datarequests/snippets/datarequest_list.html:16
+msgid "How about creating one?"
+msgstr "Hva med å lage en?"
+
+#: ckanext/datarequests/templates/datarequests/snippets/edit_datarequest_form.html:4
+msgid "Update Data Request"
+msgstr "Oppdatere dataforespørsel"
+
+#: ckanext/datarequests/templates/home/snippets/stats.html:5
+msgid "{0} statistics"
+msgstr "{0} statistikk"
+
+#: ckanext/datarequests/templates/home/snippets/stats.html:10
+msgid "dataset"
+msgstr "datasett"
+
+#: ckanext/datarequests/templates/home/snippets/stats.html:10
+msgid "datasets"
+msgstr "datasett"
+
+#: ckanext/datarequests/templates/home/snippets/stats.html:16
+msgid "organization"
+msgstr "organisasjon"
+
+#: ckanext/datarequests/templates/home/snippets/stats.html:16
+msgid "organizations"
+msgstr "organisasjoner"
+
+#: ckanext/datarequests/templates/home/snippets/stats.html:22
+msgid "group"
+msgstr "gruppe"
+
+#: ckanext/datarequests/templates/home/snippets/stats.html:22
+msgid "groups"
+msgstr "grupper"
+
+#: ckanext/datarequests/templates/home/snippets/stats.html:28
+msgid "related item"
+msgstr "relatert element"
+
+#: ckanext/datarequests/templates/home/snippets/stats.html:28
+msgid "related items"
+msgstr "relaterte elementer"
+
+#: ckanext/datarequests/templates/home/snippets/stats.html:34
+msgid "data request"
+msgstr "dataforespørsel"
+
+#: ckanext/datarequests/templates/home/snippets/stats.html:34
+msgid "data requests"
+msgstr "dataforespørsler"
+
+#: ckanext/datarequests/templates/organization/read_base.html:5
+#: ckanext/datarequests/templates/user/read_base.html:5
+msgid "Activity Stream"
+msgstr "Aktivitetsstrøm"
+
+#: ckanext/datarequests/templates/snippets/custom_search_form.html:6
+msgid "{number} data request found for \"{query}\""
+msgid_plural "{number} data requests found for \"{query}\""
+msgstr[0] "{number} dataforespørsel funnet for '{query}'"
+msgstr[1] "{number} dataforespørsler funnet for '{query}'"
+
+#: ckanext/datarequests/templates/snippets/custom_search_form.html:7
+msgid "No data requests found for \"{query}\""
+msgstr "Ingen dataforespørsler funnet for '{query}'"
+
+#: ckanext/datarequests/templates/snippets/custom_search_form.html:8
+msgid "{number} data request found"
+msgid_plural "{number} data requests found"
+msgstr[0] "{number} dataforespørsel funnet"
+msgstr[1] "{number} dataforespørsler funnet"
+
+#: ckanext/datarequests/templates/snippets/custom_search_form.html:9
+msgid "No data requests found"
+msgstr "Ingen dataforespørsler funnet"
